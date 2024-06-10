@@ -1,1 +1,1 @@
-{"mappings":"AAEA","sources":["src/index.scss"],"sourcesContent":["$color: steelblue;\r\n\r\n.my-flix {\r\n  color: $color;\r\n}\r\n"],"names":[],"version":3,"file":"index.2212206d.css.map","sourceRoot":"/__parcel_source_root/"}
+{"mappings":"AAEA;;;;AAIA","sources":["src/index.scss"],"sourcesContent":["$color: steelblue;\r\n\r\n.my-flix {\r\n  color: $color;\r\n}\r\n\r\n.similar-movies {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  gap: 1rem;\r\n  margin-top: 2rem;\r\n}\r\n"],"names":[],"version":3,"file":"index.2212206d.css.map","sourceRoot":"/__parcel_source_root/"}
