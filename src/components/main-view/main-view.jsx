@@ -24,12 +24,36 @@ const MainView = () => {
       });
   }, []);
 
+  const getSimilarMovies = (movies, currentMovie) => {
+    return movies.filter(
+      (movie) => movie.genre.Name === currentMovie.genre.Name
+    );
+  };
+
   if (selectedMovie) {
+    const similarMovies = getSimilarMovies(movies, selectedMovie);
+
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
+      <div>
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)}
+        />
+        {similarMovies.length > 0 && (
+          <div>
+            <h3>Similar Movies</h3>
+            <div className="similar-movies">
+              {similarMovies.map((movie) => (
+                <MovieCard
+                  key={movie.id}
+                  movie={movie}
+                  onMovieClick={() => setSelectedMovie(movie)}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     );
   }
 
