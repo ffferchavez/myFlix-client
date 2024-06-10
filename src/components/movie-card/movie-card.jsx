@@ -11,8 +11,8 @@ export const MovieCard = ({ movie, onMovieClick }) => {
       <img src={movie.ImagePath} alt={movie.Title} />
       <h3>{movie.Title}</h3>
       <p>{movie.Description}</p>
-      <p>Genre: {movie.Genre.name}</p>
-      <p>Director: {movie.Director.name}</p>
+      <p>Genre: {movie.Genre?.Name || "N/A"}</p>
+      <p>Director: {movie.Director?.Name || "N/A"}</p>
       <p>Featured: {movie.Featured ? "Yes" : "No"}</p>
     </div>
   );
@@ -21,15 +21,19 @@ export const MovieCard = ({ movie, onMovieClick }) => {
 // Here is where we define all the props constraints for the MovieCard
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     ImagePath: PropTypes.string.isRequired,
     Genre: PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      Name: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired,
     }).isRequired,
     Director: PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      Name: PropTypes.string.isRequired,
+      Bio: PropTypes.string.isRequired,
+      Birth: PropTypes.string,
+      Death: PropTypes.string,
     }).isRequired,
     Featured: PropTypes.bool.isRequired,
   }).isRequired,

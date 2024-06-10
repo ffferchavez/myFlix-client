@@ -7,7 +7,7 @@ const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    fetch("https://marvel-flix-c3644575f8db.herokuapp.com/")
+    fetch("https://marvel-flix-c3644575f8db.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
         setMovies(
