@@ -12,7 +12,7 @@ const MainView = () => {
       .then((data) => {
         setMovies(
           data.map((movie) => ({
-            id: movie.id,
+            id: movie._id,
             title: movie.Title,
             description: movie.Description,
             genre: movie.Genre,
@@ -45,7 +45,7 @@ const MainView = () => {
             <div className="similar-movies">
               {similarMovies.map((movie) => (
                 <MovieCard
-                  key={movie.id}
+                  key={movie._id}
                   movie={movie}
                   onMovieClick={() => setSelectedMovie(movie)}
                 />
@@ -65,7 +65,7 @@ const MainView = () => {
     <div>
       {movies.map((movie) => (
         <MovieCard
-          key={movie.id}
+          key={movie._id}
           movie={movie}
           onMovieClick={() => {
             setSelectedMovie(movie);
