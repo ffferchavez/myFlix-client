@@ -30,6 +30,7 @@ const MainView = () => {
             director: movie.Director,
             imagePath: movie.ImagePath,
             featured: movie.Featured,
+            //CHECK FOR MORE PROPS LATER..
           }))
         );
       });
