@@ -101,8 +101,8 @@ const MainView = () => {
         <MovieCard
           key={movie._id}
           movie={movie}
-          onMovieClick={() => {
-            setSelectedMovie(movie);
+          onMovieClick={(newSelectedMovie) => {
+            setSelectedMovie(newSelectedMovie);
           }}
         />
       ))}
