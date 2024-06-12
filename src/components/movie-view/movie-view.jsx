@@ -1,21 +1,26 @@
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { useParams } from "react-router";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movie }) => {
+  const { id } = useParams();
+
+  if (!movie) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Container className="my-4">
       <Row>
         <Col md={6}>
-          <img src={movie.imagePath} alt={movie.title} className="img-fluid" />
-          <Button
-            className="mt-5 w-100"
-            variant="primary"
-            onClick={onBackClick}
-          >
-            Back
-          </Button>
-        </Col>
-        <Col md={6}>
           <Card>
+            <Col md={6}>
+              <img
+                src={movie.imagePath}
+                alt={movie.title}
+                className="img-fluid"
+              />
+            </Col>
             <Card.Body>
               <Card.Title>{movie.title}</Card.Title>
               <p className="mb-3">{movie.description}</p>
@@ -32,15 +37,9 @@ export const MovieView = ({ movie, onBackClick }) => {
                   <strong>Director:</strong>
                 </span>
                 <div>{movie.director?.Name || "N/A"}</div>
-
-                {/*
-            DONT FORGET TO ADD ALL THE PROPS TO THE MOVIEVIEW
-            MAYBE ADD MORE.
-
                 <div>{movie.director?.Bio || "N/A"}</div>
-                <div>{movie.director?.Name || "N/A"}</div>
                 <div>{movie.director?.Birth || "N/A"}</div>
-                <div>{movie.director?.Death || "N/A"}</div>*/}
+                <div>{movie.director?.Death || "N/A"}</div>
               </div>
 
               <div className="d-flex justify-content-between mb-3">
@@ -50,6 +49,9 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span>{movie.featured ? "Yes" : "No"}</span>
               </div>
             </Card.Body>
+            <Link to={`/`}>
+              <button className="back-button">Back</button>
+            </Link>
           </Card>
         </Col>
       </Row>
