@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -58,29 +60,43 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          isInvalid={errors.username}
           required
-          minLength={5}
+          minLength="5"
         />
-        {errors.username && <div className="error">{errors.username}</div>}
-      </label>
-      <label>
-        Password:
-        <input
+        {errors.username && (
+          <Form.Control.Feedback type="invalid">
+            {errors.username}
+          </Form.Control.Feedback>
+        )}
+      </Form.Group>
+
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          isInvalid={errors.password}
           required
         />
-        {errors.password && <div className="error">{errors.password}</div>}
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+        {errors.password && (
+          <Form.Control.Feedback type="invalid">
+            {errors.password}
+          </Form.Control.Feedback>
+        )}
+      </Form.Group>
+
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
   );
 };

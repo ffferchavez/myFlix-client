@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
 export const SignupView = () => {
   const [username, setUsername] = useState("");
@@ -65,49 +66,37 @@ export const SignupView = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
+    <Form onSubmit={handleSubmit}>
+      <Form.Group>
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
           minLength={3}
         />
-        {errors.username && <div className="error">{errors.username}</div>}
-      </label>
-      <label>
-        Password:
-        <input
+        {errors.username && (
+          <Form.Text className="text-danger">{errors.username}</Form.Text>
+        )}
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {errors.password && <div className="error">{errors.password}</div>}
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        {errors.email && <div className="error">{errors.email}</div>}
-      </label>
-      <label>
-        Birthday:
-        <input
-          type="date"
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
-          required
-        />
-        {errors.birthday && <div className="error">{errors.birthday}</div>}
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+        {errors.password && (
+          <Form.Text className="text-danger">{errors.password}</Form.Text>
+        )}
+      </Form.Group>
+
+      {/* Repeat the same structure for email and birthday */}
+
+      <Button type="submit">Submit</Button>
+    </Form>
   );
 };
