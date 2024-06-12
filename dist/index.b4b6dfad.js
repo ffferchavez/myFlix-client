@@ -26657,8 +26657,8 @@ const MovieCard = ({ movie, onMovieClick })=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                 variant: "top",
-                src: movie.ImagePath,
-                alt: movie.Title
+                src: movie.imagePath,
+                alt: movie.title
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
                 lineNumber: 7,
@@ -26667,14 +26667,14 @@ const MovieCard = ({ movie, onMovieClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                        children: movie.Title
+                        children: movie.title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
                         lineNumber: 9,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
-                        children: movie.Description
+                        children: movie.description
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
                         lineNumber: 10,
@@ -26683,7 +26683,7 @@ const MovieCard = ({ movie, onMovieClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: [
                             "Genre: ",
-                            movie.Genre?.Name || "N/A"
+                            movie.genre?.Name || "N/A"
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-card/movie-card.jsx",
@@ -26693,7 +26693,7 @@ const MovieCard = ({ movie, onMovieClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: [
                             "Director: ",
-                            movie.Director?.Name || "N/A"
+                            movie.director?.Name || "N/A"
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-card/movie-card.jsx",
@@ -26703,7 +26703,7 @@ const MovieCard = ({ movie, onMovieClick })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: [
                             "Featured: ",
-                            movie.Featured ? "Yes" : "No"
+                            movie.featured ? "Yes" : "No"
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-card/movie-card.jsx",
