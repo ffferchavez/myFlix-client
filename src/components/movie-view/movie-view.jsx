@@ -31,7 +31,16 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span>
                   <strong>Director:</strong>
                 </span>
-                <span>{movie.director?.Name || "N/A"}</span>
+                <div>{movie.director?.Name || "N/A"}</div>
+
+                {/*
+            DONT FORGET TO ADD ALL THE PROPS TO THE MOVIEVIEW
+            MAYBE ADD MORE.
+
+                <div>{movie.director?.Bio || "N/A"}</div>
+                <div>{movie.director?.Name || "N/A"}</div>
+                <div>{movie.director?.Birth || "N/A"}</div>
+                <div>{movie.director?.Death || "N/A"}</div>*/}
               </div>
 
               <div className="d-flex justify-content-between mb-3">

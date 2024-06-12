@@ -27635,7 +27635,8 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 const MovieCard = ({ movie, onMovieClick })=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
+    return(//DONT FORGET TO ADD A CONTAINER TO FILTER THE 6 PHASES OF THE MOVIES
+    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         onClick: ()=>onMovieClick(movie),
         style: {
             cursor: "pointer"
@@ -27645,10 +27646,14 @@ const MovieCard = ({ movie, onMovieClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                 variant: "top",
                 src: movie.imagePath,
-                alt: movie.title
+                alt: movie.title,
+                style: {
+                    objectFit: "cover",
+                    height: "450px"
+                }
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 11,
+                lineNumber: 13,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -27656,20 +27661,20 @@ const MovieCard = ({ movie, onMovieClick })=>{
                     children: movie.title
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 13,
+                    lineNumber: 20,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 12,
+                lineNumber: 19,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 6,
+        lineNumber: 8,
         columnNumber: 5
-    }, undefined);
+    }, undefined));
 };
 _c = MovieCard;
 MovieCard.propTypes = {
@@ -30948,7 +30953,7 @@ const MovieView = ({ movie, onBackClick })=>{
                                             lineNumber: 31,
                                             columnNumber: 17
                                         }, undefined),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                             children: movie.director?.Name || "N/A"
                                         }, void 0, false, {
                                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -30969,25 +30974,25 @@ const MovieView = ({ movie, onBackClick })=>{
                                                 children: "Featured:"
                                             }, void 0, false, {
                                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                                lineNumber: 39,
+                                                lineNumber: 48,
                                                 columnNumber: 19
                                             }, undefined)
                                         }, void 0, false, {
                                             fileName: "src/components/movie-view/movie-view.jsx",
-                                            lineNumber: 38,
+                                            lineNumber: 47,
                                             columnNumber: 17
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                                             children: movie.featured ? "Yes" : "No"
                                         }, void 0, false, {
                                             fileName: "src/components/movie-view/movie-view.jsx",
-                                            lineNumber: 41,
+                                            lineNumber: 50,
                                             columnNumber: 17
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 37,
+                                    lineNumber: 46,
                                     columnNumber: 15
                                 }, undefined)
                             ]
