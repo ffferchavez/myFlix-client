@@ -94,6 +94,33 @@ export const SignupView = () => {
         )}
       </Form.Group>
 
+      <Form.Group>
+        <Form.Label>Email:</Form.Label>
+        <Form.Control
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        />
+        {errors.email && (
+          <Form.Text className="text-danger">{errors.email}</Form.Text>
+        )}
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control
+          type="date"
+          value={birthday}
+          onChange={(e) => setBirthday(e.target.value)}
+          required
+        />
+        {errors.birthday && (
+          <Form.Text className="text-danger">{errors.birthday}</Form.Text>
+        )}
+      </Form.Group>
+
       {/* Repeat the same structure for email and birthday */}
 
       <Button type="submit">Submit</Button>

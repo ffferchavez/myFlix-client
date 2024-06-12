@@ -3,6 +3,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { Row, Col } from "react-bootstrap";
 
 const MainView = () => {
   const [movies, setMovies] = useState([]);
@@ -36,18 +37,21 @@ const MainView = () => {
 
   if (!user) {
     return (
-      <>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-            localStorage.setItem("user", JSON.stringify(user));
-            localStorage.setItem("token", token);
-          }}
-        />
-        or
-        <SignupView />
-      </>
+      <Row className="justify-content-md-center">
+        <Col md={5}>
+          <LoginView
+            onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
+              localStorage.setItem("user", JSON.stringify(user));
+              localStorage.setItem("token", token);
+            }}
+          />
+        </Col>
+        <Col md={5}>
+          <SignupView />
+        </Col>
+      </Row>
     );
   }
 
@@ -61,15 +65,18 @@ const MainView = () => {
     const similarMovies = getSimilarMovies(movies, selectedMovie);
 
     return (
-      <div>
-        <MovieView
-          movie={selectedMovie}
-          onBackClick={() => setSelectedMovie(null)}
-        />
+      <Row className="justify-content-md-center">
+        <Col md={8} style={{ border: "1px solid black" }}>
+          <MovieView
+            style={{ border: "1px solid green" }}
+            movie={selectedMovie}
+            onBackClick={() => setSelectedMovie(null)}
+          />
+        </Col>
         {similarMovies.length > 0 && (
-          <div>
+          <Col md={8}>
             <h3>Similar Movies</h3>
-            <div className="similar-movies">
+            <Row className="similar-movies">
               {similarMovies.map((movie) => (
                 <MovieCard
                   key={movie._id}
@@ -77,16 +84,37 @@ const MainView = () => {
                   onMovieClick={() => setSelectedMovie(movie)}
                 />
               ))}
-            </div>
-          </div>
+            </Row>
+          </Col>
         )}
-      </div>
+      </Row>
     );
   }
 
   if (movies.length === 0) {
     return (
-      <div>
+      <Row className="justify-content-md-center">
+        <Col md={8}>
+          <nav>
+            <button
+              onClick={() => {
+                setUser(null);
+                setToken(null);
+                localStorage.clear();
+              }}
+            >
+              Logout
+            </button>
+          </nav>
+          The list is empty!
+        </Col>
+      </Row>
+    );
+  }
+
+  return (
+    <Row className="justify-content-md-center">
+      <Col md={8}>
         <nav>
           <button
             onClick={() => {
@@ -98,34 +126,17 @@ const MainView = () => {
             Logout
           </button>
         </nav>
-        The list is empty!
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      <nav>
-        <button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          }}
-        >
-          Logout
-        </button>
-      </nav>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie._id}
-          movie={movie}
-          onMovieClick={() => {
-            setSelectedMovie(movie);
-          }}
-        />
-      ))}
-    </div>
+        {movies.map((movie) => (
+          <MovieCard
+            key={movie._id}
+            movie={movie}
+            onMovieClick={() => {
+              setSelectedMovie(movie);
+            }}
+          />
+        ))}
+      </Col>
+    </Row>
   );
 };
 
