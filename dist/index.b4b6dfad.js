@@ -26408,8 +26408,8 @@ const MainView = ()=>{
     _s();
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    const storedToken = localStorage.getItem("token");
+    const storedUser = JSON.parse(localStorage.getItem("myFlixUser"));
+    const storedToken = localStorage.getItem("myFlixToken");
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     (0, _react.useEffect)(()=>{
@@ -26441,8 +26441,8 @@ const MainView = ()=>{
                     onLoggedIn: (user, token)=>{
                         setUser(user);
                         setToken(token);
-                        localStorage.setItem("user", JSON.stringify(user));
-                        localStorage.setItem("token", token);
+                        localStorage.setItem("myFlixUser", JSON.stringify(user));
+                        localStorage.setItem("myFlixToken", token);
                     }
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
@@ -26551,7 +26551,8 @@ const MainView = ()=>{
                     onClick: ()=>{
                         setUser(null);
                         setToken(null);
-                        localStorage.clear();
+                        localStorage.removeItem("myFlixUser");
+                        localStorage.removeItem("myFlixToken");
                     },
                     children: "Logout"
                 }, void 0, false, {
@@ -26579,17 +26580,18 @@ const MainView = ()=>{
                     onClick: ()=>{
                         setUser(null);
                         setToken(null);
-                        localStorage.clear();
+                        localStorage.removeItem("myFlixUser");
+                        localStorage.removeItem("myFlixToken");
                     },
                     children: "Logout"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 116,
+                    lineNumber: 117,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 115,
+                lineNumber: 116,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -26603,23 +26605,23 @@ const MainView = ()=>{
                             }
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 130,
+                            lineNumber: 132,
                             columnNumber: 13
                         }, undefined)
-                    }, movie._id, false, {
+                    }, movie.id, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 129,
+                        lineNumber: 131,
                         columnNumber: 11
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 127,
+                lineNumber: 129,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 114,
+        lineNumber: 115,
         columnNumber: 5
     }, undefined);
 };

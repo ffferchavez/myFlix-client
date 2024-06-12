@@ -8,8 +8,8 @@ import { Button, Row, Col } from "react-bootstrap";
 const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
+  const storedUser = JSON.parse(localStorage.getItem("myFlixUser"));
+  const storedToken = localStorage.getItem("myFlixToken");
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
@@ -43,8 +43,8 @@ const MainView = () => {
             onLoggedIn={(user, token) => {
               setUser(user);
               setToken(token);
-              localStorage.setItem("user", JSON.stringify(user));
-              localStorage.setItem("token", token);
+              localStorage.setItem("myFlixUser", JSON.stringify(user));
+              localStorage.setItem("myFlixToken", token);
             }}
           />
         </Col>
@@ -99,7 +99,8 @@ const MainView = () => {
             onClick={() => {
               setUser(null);
               setToken(null);
-              localStorage.clear();
+              localStorage.removeItem("myFlixUser");
+              localStorage.removeItem("myFlixToken");
             }}
           >
             Logout
@@ -117,7 +118,8 @@ const MainView = () => {
           onClick={() => {
             setUser(null);
             setToken(null);
-            localStorage.clear();
+            localStorage.removeItem("myFlixUser");
+            localStorage.removeItem("myFlixToken");
           }}
         >
           Logout
@@ -126,7 +128,7 @@ const MainView = () => {
 
       <Row>
         {movies.map((movie) => (
-          <Col className="mb-5 mt-5" key={movie._id} md={3}>
+          <Col className="mb-5 mt-5" key={movie.id} md={3}>
             <MovieCard
               movie={movie}
               onMovieClick={() => {
