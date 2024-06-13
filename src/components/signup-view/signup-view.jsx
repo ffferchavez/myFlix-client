@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { useNavigate, Link } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import { Container } from "react-bootstrap";
 
 export const SignupView = () => {
   const [username, setUsername] = useState("");
@@ -7,6 +10,7 @@ export const SignupView = () => {
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validate = () => {
     let errors = {};
@@ -66,64 +70,88 @@ export const SignupView = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group>
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength={3}
-        />
-        {errors.username && (
-          <Form.Text className="text-danger">{errors.username}</Form.Text>
-        )}
-      </Form.Group>
+    <Container
+      className="d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            isInvalid={errors.username}
+            required
+            minLength={3}
+          />
+          {errors.username && (
+            <Form.Control.Feedback type="invalid">
+              {errors.username}
+            </Form.Control.Feedback>
+          )}
+        </Form.Group>
 
-      <Form.Group>
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        {errors.password && (
-          <Form.Text className="text-danger">{errors.password}</Form.Text>
-        )}
-      </Form.Group>
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            isInvalid={errors.password}
+            required
+          />
+          {errors.password && (
+            <Form.Control.Feedback type="invalid">
+              {errors.password}
+            </Form.Control.Feedback>
+          )}
+        </Form.Group>
 
-      <Form.Group>
-        <Form.Label>Email:</Form.Label>
-        <Form.Control
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-        />
-        {errors.email && (
-          <Form.Text className="text-danger">{errors.email}</Form.Text>
-        )}
-      </Form.Group>
+        <Form.Group controlId="formEmail">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            isInvalid={errors.email}
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          />
+          {errors.email && (
+            <Form.Control.Feedback type="invalid">
+              {errors.email}
+            </Form.Control.Feedback>
+          )}
+        </Form.Group>
 
-      <Form.Group>
-        <Form.Label>Birthday:</Form.Label>
-        <Form.Control
-          type="date"
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
-          required
-        />
-        {errors.birthday && (
-          <Form.Text className="text-danger">{errors.birthday}</Form.Text>
-        )}
-      </Form.Group>
+        <Form.Group controlId="formBirthday">
+          <Form.Label>Birthday:</Form.Label>
+          <Form.Control
+            type="date"
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
+            isInvalid={errors.birthday}
+            required
+          />
+          {errors.birthday && (
+            <Form.Control.Feedback type="invalid">
+              {errors.birthday}
+            </Form.Control.Feedback>
+          )}
+        </Form.Group>
 
-      {/* Repeat the same structure for email and birthday */}
-
-      <Button type="submit">Submit</Button>
-    </Form>
+        <Container className="d-flex justify-content-between mt-5">
+          <div className="d-flex justify-content-between">
+            <Button variant="primary" type="submit">
+              Sign Up
+            </Button>
+          </div>
+          <div>
+            <Link to="/login">Login Here</Link>
+          </div>
+        </Container>
+      </Form>
+    </Container>
   );
 };

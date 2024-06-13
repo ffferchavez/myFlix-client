@@ -4,15 +4,25 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { Button, Row, Col } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Link,
+  useParams,
+} from "react-router-dom";
 import NavigationBar from "../navigation-bar/navigation-bar";
 
 const MainView = () => {
+  const { id } = useParams();
   const [movies, setMovies] = useState([]);
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [similarMovies, setSimilarMovies] = useState([]);
 
   useEffect(() => {
     if (!token) return;
@@ -24,7 +34,7 @@ const MainView = () => {
       .then((movies) => {
         setMovies(
           movies.map((movie) => ({
-            id: movie._id,
+            _id: movie._id,
             title: movie.Title,
             description: movie.Description,
             genre: movie.Genre,
@@ -36,9 +46,46 @@ const MainView = () => {
       });
   }, [token]);
 
+  useEffect(() => {
+    if (!token || !id) return;
+
+    const fetchMovieData = async () => {
+      try {
+        const response = await fetch(
+          `https://marvel-flix-c3644575f8db.herokuapp.com/movies/${id}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        const movieData = await response.json();
+        setSelectedMovie(movieData);
+
+        const similarMoviesResponse = await fetch(
+          `https://marvel-flix-c3644575f8db.herokuapp.com/movies/${id}/similar`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        const similarMoviesData = await similarMoviesResponse.json();
+        setSimilarMovies(similarMoviesData);
+      } catch (error) {
+        console.error("Error fetching movie data:", error);
+      }
+    };
+
+    fetchMovieData();
+  }, [token, id]);
+
   return (
     <BrowserRouter>
-      <NavigationBar />
+      <NavigationBar
+        onLogout={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+        }}
+      />
       <Row className="justify-content-md-center">
         <Routes>
           <Route
@@ -88,7 +135,7 @@ const MainView = () => {
                   <>
                     {movies.map((movie) => (
                       <Col className="mb-5 mt-5" key={movie._id} md={3}>
-                        <Link to={`/movies/${movie._id}`}>
+                        <Link to={`/movies/${id}`}>
                           <MovieCard movie={movie} />
                         </Link>
                       </Col>
@@ -99,14 +146,19 @@ const MainView = () => {
             }
           />
           <Route
-            path="/movies/:id" // IS IT CORRECT???
+            path="/movies/:id"
             element={
               <>
                 {!user ? (
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} />
+                    {selectedMovie && (
+                      <MovieView
+                        movie={selectedMovie}
+                        similarMovies={similarMovies}
+                      />
+                    )}
                   </Col>
                 )}
               </>

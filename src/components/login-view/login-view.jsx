@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { Container } from "react-bootstrap";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validate = () => {
     let errors = {};
@@ -48,7 +51,7 @@ export const LoginView = ({ onLoggedIn }) => {
             localStorage.setItem("token", data.token);
             onLoggedIn(data.user, data.token);
           } else {
-            alert("No such user");
+            navigate("/signup"); // Redirect to the signup page
           }
         })
         .catch((e) => {
@@ -60,43 +63,55 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          isInvalid={errors.username}
-          required
-          minLength="5"
-        />
-        {errors.username && (
-          <Form.Control.Feedback type="invalid">
-            {errors.username}
-          </Form.Control.Feedback>
-        )}
-      </Form.Group>
+    <Container
+      className="d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            isInvalid={errors.username}
+            required
+            minLength="5"
+          />
+          {errors.username && (
+            <Form.Control.Feedback type="invalid">
+              {errors.username}
+            </Form.Control.Feedback>
+          )}
+        </Form.Group>
 
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          isInvalid={errors.password}
-          required
-        />
-        {errors.password && (
-          <Form.Control.Feedback type="invalid">
-            {errors.password}
-          </Form.Control.Feedback>
-        )}
-      </Form.Group>
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            isInvalid={errors.password}
+            required
+          />
+          {errors.password && (
+            <Form.Control.Feedback type="invalid">
+              {errors.password}
+            </Form.Control.Feedback>
+          )}
+        </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+        <Container className="d-flex justify-content-between mt-5">
+          <div className="d-flex justify-content-between">
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
+          </div>
+          <div>
+            <Link to="/signup">Sign Up Here</Link>
+          </div>
+        </Container>
+      </Form>
+    </Container>
   );
 };
