@@ -4,25 +4,17 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { Button, Row, Col } from "react-bootstrap";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  Link,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import NavigationBar from "../navigation-bar/navigation-bar";
+import ProfileView from "../profile-view/profile-view";
 
 const MainView = () => {
-  const { id } = useParams();
   const [movies, setMovies] = useState([]);
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [similarMovies, setSimilarMovies] = useState([]);
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
 
   useEffect(() => {
     if (!token) return;
@@ -45,36 +37,6 @@ const MainView = () => {
         );
       });
   }, [token]);
-
-  useEffect(() => {
-    if (!token || !id) return;
-
-    const fetchMovieData = async () => {
-      try {
-        const response = await fetch(
-          `https://marvel-flix-c3644575f8db.herokuapp.com/movies/${id}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-        const movieData = await response.json();
-        setSelectedMovie(movieData);
-
-        const similarMoviesResponse = await fetch(
-          `https://marvel-flix-c3644575f8db.herokuapp.com/movies/${id}/similar`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-        const similarMoviesData = await similarMoviesResponse.json();
-        setSimilarMovies(similarMoviesData);
-      } catch (error) {
-        console.error("Error fetching movie data:", error);
-      }
-    };
-
-    fetchMovieData();
-  }, [token, id]);
 
   return (
     <BrowserRouter>
@@ -135,9 +97,10 @@ const MainView = () => {
                   <>
                     {movies.map((movie) => (
                       <Col className="mb-5 mt-5" key={movie._id} md={3}>
-                        <Link to={`/movies/${id}`}>
-                          <MovieCard movie={movie} />
-                        </Link>
+                        <MovieCard
+                          movie={movie}
+                          onMovieClick={setSelectedMovieId} // Pass setSelectedMovieId
+                        />
                       </Col>
                     ))}
                   </>
@@ -153,16 +116,15 @@ const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    {selectedMovie && (
-                      <MovieView
-                        movie={selectedMovie}
-                        similarMovies={similarMovies}
-                      />
-                    )}
+                    <MovieView token={token} /> {/* Remove 'id' prop */}
                   </Col>
                 )}
               </>
             }
+          />
+          <Route
+            path="/users/profile"
+            element={<ProfileView user={user} token={token} />}
           />
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>

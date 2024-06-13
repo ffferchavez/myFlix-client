@@ -1,7 +1,42 @@
+import { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
-export const MovieView = ({ movie }) => {
+export const MovieView = ({ token }) => {
+  const { id } = useParams(); // Use useParams to get the id from the route
+  const [movie, setMovie] = useState(null);
+
+  useEffect(() => {
+    if (!token || !id) return;
+
+    const fetchMovieData = async () => {
+      try {
+        console.log("Fetching movie data for ID:", id);
+        console.log("Using token:", token);
+
+        const response = await fetch(
+          `https://marvel-flix-c3644575f8db.herokuapp.com/movies/${id}`, // Correctly forms the URL with `/movies/:id`
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        const responseData = await response.json(); // Parse the response as JSON
+        console.log("Movie data fetched:", responseData);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        setMovie(responseData);
+      } catch (error) {
+        console.error("Error fetching movie data:", error);
+      }
+    };
+
+    fetchMovieData();
+  }, [token, id]);
+
   if (!movie) {
     return <div>Loading...</div>;
   }
