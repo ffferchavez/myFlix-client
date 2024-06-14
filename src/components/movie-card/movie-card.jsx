@@ -9,7 +9,6 @@ export const MovieCard = ({ movie }) => {
     <Link
       className="mt-5 w-100 h-100 btn-card"
       to={`/movies/${movie._id}`}
-      onClick={() => handleMovieClick(movie)}
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <Card className="h-100 w-100" style={{ cursor: "pointer" }}>
@@ -22,7 +21,15 @@ export const MovieCard = ({ movie }) => {
         <Card.Body>
           <Card.Title>{movie.title}</Card.Title>
           <Link to={`/movies/${movie._id}`}>
-            <Button variant="link">See More</Button>
+            <Button
+              variant="link"
+              style={{
+                color: "red",
+                textDecoration: "none",
+              }}
+            >
+              Check Me Out!
+            </Button>
           </Link>
         </Card.Body>
       </Card>

@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
+import "./login-view.scss";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -64,7 +65,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
   return (
     <Container
-      className="d-flex justify-content-center align-items-center"
+      className="login-container d-flex justify-content-center align-items-center"
       style={{ minHeight: "100vh" }}
     >
       <Form onSubmit={handleSubmit}>

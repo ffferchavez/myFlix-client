@@ -15,7 +15,7 @@ export const MovieView = ({ token }) => {
         console.log("Using token:", token);
 
         const response = await fetch(
-          `https://marvel-flix-c3644575f8db.herokuapp.com/movies/${id}`, // Correctly forms the URL with `/movies/:id`
+          `https://marvel-flix-c3644575f8db.herokuapp.com/movies/${movie._id}`, // Correctly forms the URL with `/movies/:id`
           {
             headers: { Authorization: `Bearer ${token}` },
           }
