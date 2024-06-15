@@ -16,28 +16,20 @@ export const ProfileView = ({
       : [];
 
   return (
-    <div>
-      <Container
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "100vh" }}
-      >
-        <Row className="w-100">
-          <Col md={6} className="mx-auto">
-            <AccountDetails user={user} onAccountUpdate={onAccountUpdate} />
-          </Col>
-        </Row>
-      </Container>
-      <Container>
-        <Row>
-          <Col>
-            <FavouriteMovies
-              favouriteMovieList={favouriteMovieList}
-              user={user}
-              onFavouritesUpdate={onFavouritesUpdate}
-            />
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    <Container
+      className="d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Row className="w-100">
+        <Col md={6} className="mx-auto">
+          <AccountDetails user={user} onAccountUpdate={onAccountUpdate} />
+          <FavouriteMovies
+            favouriteMovieList={favouriteMovieList}
+            user={user}
+            onFavouritesUpdate={onFavouritesUpdate}
+          />
+        </Col>
+      </Row>
+    </Container>
   );
 };

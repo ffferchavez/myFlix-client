@@ -11,23 +11,25 @@ export const FavouriteMovies = ({
 }) => {
   return (
     <>
-      <Row>
-        <Col>
-          <h2>Favourite Movies</h2>
-        </Col>
-      </Row>
-      <Row>
-        {favouriteMovieList.map((movie) => (
-          <Col key={movie._id} xs={12} sm={6} md={4} lg={3} className="mb-4">
-            <MovieCard
-              movieData={movie}
-              user={user}
-              onFavouritesUpdate={onFavouritesUpdate}
-              key={movie._id}
-            />
+      <div className="favMovies">
+        <Row>
+          <Col>
+            <h2>Favourite Movies</h2>
           </Col>
-        ))}
-      </Row>
+        </Row>
+        <Row>
+          {favouriteMovieList.map((movie) => (
+            <Col key={movie._id} xs={12} sm={6} md={4} lg={3} className="mb-4">
+              <MovieCard
+                movieData={movie}
+                user={user}
+                onFavouritesUpdate={onFavouritesUpdate}
+                key={movie._id}
+              />
+            </Col>
+          ))}
+        </Row>
+      </div>
     </>
   );
 };

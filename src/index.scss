@@ -6,3 +6,56 @@ $body-bg: Snow;
 /*.my-flix {
   color: $color;
 }*/
+
+body {
+  background-image: url("./assets/img/red-bg.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow: auto;
+  background-attachment: fixed;
+}
+
+.account-info {
+  background-color: #fff;
+  padding: 100px;
+  border-radius: 10px;
+}
+
+.favMovies {
+  color: #fff;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.signup-link {
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  color: #fff;
+}
+
+.login-link {
+  text-decoration: none;
+}
+
+.login-link:hover {
+  color: #fff;
+}
+
+.login-c,
+.signup-c {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.login-label {
+  color: #fff;
+}
+
+.signup-label {
+  color: #fff;
+}

@@ -110,10 +110,7 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
 
   return (
     <>
-      <Container
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "100vh" }}
-      >
+      <Container className="account-info d-flex justify-content-center align-items-center">
         <Row>
           <Col>
             {!editMode && (

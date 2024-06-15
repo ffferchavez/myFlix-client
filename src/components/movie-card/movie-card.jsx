@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 export const MovieCard = ({ movie }) => {
   return (
-    //PERHAPS I ADD A CONTAINER TO FILTER THE 6 PHASES OF THE MOVIES?
-
     <Link
       className="mt-5 w-100 h-100 btn-card"
       to={`/movies/${movie._id}`}
@@ -18,19 +16,18 @@ export const MovieCard = ({ movie }) => {
           alt={movie.Title}
           style={{ objectFit: "cover", height: "400px" }}
         />
-        <Card.Body>
-          <Card.Title>{movie.Title}</Card.Title>
-          <Link to={`/movies/${movie._id}`}>
-            <Button
-              variant="link"
-              style={{
-                color: "red",
-                textDecoration: "none",
-              }}
+        <Card.Body className="d-flex flex-column justify-content-between">
+          <div>
+            <Card.Title>{movie.Title}</Card.Title>
+          </div>
+          <div className="text-center mt-3">
+            <Link
+              to={`/movies/${movie._id}`}
+              style={{ textDecoration: "none" }}
             >
-              Check Me Out!
-            </Button>
-          </Link>
+              <Button className="checkme btn">Check Me Out!</Button>
+            </Link>
+          </div>
         </Card.Body>
       </Card>
     </Link>

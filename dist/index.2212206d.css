@@ -1,49 +1,3 @@
-.login-container {
-  background-color: #f8f9fa;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  display: flex;
-}
-
-.login-container .login-form {
-  background-color: #fff;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 400px;
-  padding: 2rem;
-  box-shadow: 0 4px 8px #0000001a;
-}
-
-.login-container .login-form .form-group {
-  margin-bottom: 1.5rem;
-}
-
-.login-container .login-form .form-control {
-  border-radius: 5px;
-}
-
-.login-container .login-form .btn-primary {
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  width: 100%;
-  padding: .75rem;
-}
-
-.login-container .login-form .btn-primary:hover {
-  background-color: #0062cc;
-}
-
-.login-container .login-form .link {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.login-container .login-form .link:hover {
-  text-decoration: underline;
-}
-
 :root, [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -13232,5 +13186,53 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+
+body {
+  background-image: url("red-bg.f7732e8e.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  overflow: auto;
+}
+
+.account-info {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 100px;
+}
+
+.favMovies {
+  color: #fff;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.signup-link {
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  color: #fff;
+}
+
+.login-link {
+  text-decoration: none;
+}
+
+.login-link:hover {
+  color: #fff;
+}
+
+.login-c, .signup-c {
+  background-color: #00000080;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.login-label, .signup-label {
+  color: #fff;
 }
 /*# sourceMappingURL=index.2212206d.css.map */

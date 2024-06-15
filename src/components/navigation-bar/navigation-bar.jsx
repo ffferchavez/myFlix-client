@@ -1,14 +1,18 @@
+import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
+import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import NavbarLogo from "../../assets/img/navbar-logo.jpeg"; // Adjust the path as per your actual folder structure
 
-function NavigationBar({ onLogout }) {
+function NavigationBar({ onLogout, onSearch }) {
   const navigate = useNavigate();
-  const [isNavExpanded, setIsNavExpanded] = useState(false);
   const location = useLocation();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleLogout = () => {
     // Call the onLogout function passed from the MainView component
@@ -18,8 +22,9 @@ function NavigationBar({ onLogout }) {
     navigate("/login");
   };
 
-  const toggleNavbar = () => {
-    setIsNavExpanded(!isNavExpanded);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(searchQuery.trim()); // Pass the trimmed search query to the parent component
   };
 
   // Check if the current location is the login page or the signup page
@@ -29,14 +34,18 @@ function NavigationBar({ onLogout }) {
 
   return (
     <Navbar
+      fixed="top"
       expand="lg"
-      className="bg-body-tertiary mb-3"
-      onToggle={toggleNavbar}
-      expanded={isNavExpanded}
+      style={{ backgroundColor: "FireBrick", width: "100%" }}
     >
       <Container fluid>
         <Navbar.Brand href="http://localhost:1234/movies">
-          Marvel Studios
+          <img
+            src={NavbarLogo}
+            height="30"
+            className="d-inline-block align-top"
+            alt="Marvel Studios Logo"
+          />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -47,25 +56,33 @@ function NavigationBar({ onLogout }) {
           >
             <Nav.Link
               href="http://localhost:1234/movies"
-              onClick={toggleNavbar}
+              style={{ color: "white" }}
             >
               Home
             </Nav.Link>
             <Nav.Link
               href="http://localhost:1234/users/profile"
-              onClick={toggleNavbar}
+              style={{ color: "white" }}
             >
               Profile
             </Nav.Link>
-            <Nav.Link
-              onClick={() => {
-                toggleNavbar();
-                handleLogout();
-              }}
-            >
+            <Nav.Link onClick={handleLogout} style={{ color: "white" }}>
               Log Out
             </Nav.Link>
           </Nav>
+          <Form className="d-flex" onSubmit={handleSubmit}>
+            <FormControl
+              type="search"
+              placeholder="Search by movie name"
+              className="me-2"
+              aria-label="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <Button variant="outline-light" type="submit">
+              Search
+            </Button>
+          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>

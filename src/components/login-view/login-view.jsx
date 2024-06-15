@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
-import "./login-view.scss";
+import marvelLogo from "../../assets/img/marvel-logo.jpeg"; // Replace with your image path
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -65,12 +65,19 @@ export const LoginView = ({ onLoggedIn }) => {
 
   return (
     <Container
-      className="login-c d-flex justify-content-center align-items-center"
+      className="login-c justify-content-center align-items-center"
       style={{ minHeight: "100vh" }}
     >
-      <Form onSubmit={handleSubmit}>
+      <div>
+        <img
+          src={marvelLogo}
+          alt="Marvel Logo"
+          className="login-logo img-fluid"
+        />
+      </div>
+      <Form onSubmit={handleSubmit} className="mt-5">
         <Form.Group controlId="formUsername">
-          <Form.Label>Username:</Form.Label>
+          <Form.Label className="login-label">Username:</Form.Label>
           <Form.Control
             type="text"
             value={username}
@@ -87,7 +94,7 @@ export const LoginView = ({ onLoggedIn }) => {
         </Form.Group>
 
         <Form.Group controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
+          <Form.Label className="login-label">Password:</Form.Label>
           <Form.Control
             type="password"
             value={password}
@@ -109,7 +116,9 @@ export const LoginView = ({ onLoggedIn }) => {
             </Button>
           </div>
           <div>
-            <Link to="/signup">Sign Up Here</Link>
+            <Link className="signup-link" to="/signup">
+              Sign Up Here
+            </Link>
           </div>
         </Container>
       </Form>
