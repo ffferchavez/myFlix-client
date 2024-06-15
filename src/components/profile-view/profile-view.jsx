@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
-const ProfileView = ({ token }) => {
-  const { id } = useParams();
+const ProfileView = ({ token, userId }) => {
   const [userData, setUserData] = useState(null);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
-    if (!token || !id) return;
+    if (!token || !userId) return;
+
+    console.log(`Fetching user data for userId: ${userId}`);
 
     // Fetch user profile data
-    fetch(`https://marvel-flix-c3644575f8db.herokuapp.com/users/${id}`, {
+    fetch(`https://marvel-flix-c3644575f8db.herokuapp.com/users/${userId}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
@@ -21,29 +22,34 @@ const ProfileView = ({ token }) => {
         return response.json();
       })
       .then((userData) => {
+        console.log("User data fetched:", userData);
         setUserData(userData);
 
         // Fetch favorite movies based on user's FavoriteMovies array
         const favoriteMovieIds = userData.FavoriteMovies || [];
-        Promise.all(
-          favoriteMovieIds.map((movieId) =>
-            fetch(
-              `https://marvel-flix-c3644575f8db.herokuapp.com/movies/${movieId}`,
-              {
-                headers: { Authorization: `Bearer ${token}` },
-              }
-            ).then((response) => response.json())
+        if (favoriteMovieIds.length > 0) {
+          fetch(
+            `https://marvel-flix-c3644575f8db.herokuapp.com/movies?ids=${favoriteMovieIds.join(
+              ","
+            )}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
           )
-        )
-          .then((favoriteMoviesData) => setFavoriteMovies(favoriteMoviesData))
-          .catch((error) => {
-            console.error("Error fetching favorite movies:", error);
-          });
+            .then((response) => response.json())
+            .then((favoriteMoviesData) => {
+              console.log("Favorite movies fetched:", favoriteMoviesData);
+              setFavoriteMovies(favoriteMoviesData);
+            })
+            .catch((error) => {
+              console.error("Error fetching favorite movies:", error);
+            });
+        }
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-  }, [token, id]);
+  }, [token, userId]);
 
   if (!userData) {
     return <div>Loading user profile...</div>;
@@ -82,7 +88,6 @@ const ProfileView = ({ token }) => {
               <div key={movie._id}>
                 <h4>{movie.Title}</h4>
                 <p>{movie.Description}</p>
-                {/* Display more movie details here */}
               </div>
             ))
           )}

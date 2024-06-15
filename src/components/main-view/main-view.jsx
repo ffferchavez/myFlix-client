@@ -124,7 +124,7 @@ const MainView = () => {
             }
           />
           <Route
-            path="/movies/:movieId" // Use :movieId instead of :id
+            path="/movies/:movieId"
             element={
               <>
                 {!user ? (
@@ -139,7 +139,15 @@ const MainView = () => {
           />
           <Route
             path="/users/profile"
-            element={<ProfileView user={user} token={token} />}
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <ProfileView userId={user._id} token={token} />
+                )}
+              </>
+            }
           />
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>

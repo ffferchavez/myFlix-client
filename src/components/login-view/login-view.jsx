@@ -65,7 +65,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
   return (
     <Container
-      className="login-container d-flex justify-content-center align-items-center"
+      className="login-c d-flex justify-content-center align-items-center"
       style={{ minHeight: "100vh" }}
     >
       <Form onSubmit={handleSubmit}>
