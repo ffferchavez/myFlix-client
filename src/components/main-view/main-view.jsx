@@ -34,6 +34,7 @@ const MainView = () => {
           Title: movie.Title,
           Description: movie.Description,
           ImagePath: movie.ImagePath,
+          Phase: movie.Phase,
           Featured: movie.Featured,
           Genre: {
             Name: movie.Genre.Name,

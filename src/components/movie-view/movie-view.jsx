@@ -24,20 +24,12 @@ const MovieView = ({ movies }) => {
       <Row className="p-5 padding-sm">
         <Col md={6}>
           <h2 className="mb-2">{movieData.Title}</h2>
-          <Row className="mb-4 text-secondary">
-            <Col md="auto">
-              <h4>{movieData.Director.Name}</h4>
-            </Col>
-            <Col></Col>
-            <Col md="auto">
-              <h5 className="text-dark">{movieData.Genre.Name}</h5>
-            </Col>
-          </Row>
-          <Col md={12} className="mb-4">
-            <p>{movieData.Description}</p>
-          </Col>
           <Col md={12} className="mb-4">
             <h4>Director</h4>
+            <p>
+              <strong>Name: </strong>
+              {movieData.Director.Name}
+            </p>
             <p>
               <strong>Bio: </strong>
               {movieData.Director.Bio}
@@ -56,9 +48,20 @@ const MovieView = ({ movies }) => {
           <Col md={12} className="mb-4">
             <h4>Genre</h4>
             <p>
+              <strong>Name: </strong>
+              {movieData.Genre.Name}
+            </p>
+            <p>
               <strong>Description: </strong>
               {movieData.Genre.Description}
             </p>
+          </Col>
+          <Col md={12} className="mb-4">
+            <p>{movieData.Description}</p>
+          </Col>
+          <Col md={12} className="mb-4">
+            <h4>Phase</h4>
+            <p>{movieData.Phase}</p>
           </Col>
         </Col>
         <Col md={6} className="text-center mb-5">
@@ -85,6 +88,7 @@ MovieView.propTypes = {
       Title: PropTypes.string.isRequired,
       Description: PropTypes.string.isRequired,
       ImagePath: PropTypes.string.isRequired,
+      Phase: PropTypes.string.isRequired,
       Featured: PropTypes.bool.isRequired,
       Genre: PropTypes.shape({
         Name: PropTypes.string.isRequired,
