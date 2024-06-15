@@ -19,7 +19,7 @@ export const MovieCard = ({ movie }) => {
           style={{ objectFit: "cover", height: "400px" }}
         />
         <Card.Body>
-          <Card.Title>{movie.Title}</Card.Title>
+          <Card.Title>{movie.title}</Card.Title>
           <Link to={`/movies/${movie._id}`}>
             <Button
               variant="link"
