@@ -39,7 +39,7 @@ function NavigationBar({ onLogout, onSearch }) {
       style={{ backgroundColor: "FireBrick", width: "100%" }}
     >
       <Container fluid>
-        <Navbar.Brand href="http://localhost:1234/movies">
+        <Navbar.Brand href="https://marvel-flix-app.netlify.app/movies">
           <img
             src={NavbarLogo}
             height="30"
@@ -55,13 +55,13 @@ function NavigationBar({ onLogout, onSearch }) {
             navbarScroll
           >
             <Nav.Link
-              href="http://localhost:1234/movies"
+              href="https://marvel-flix-app.netlify.app/home"
               style={{ color: "white" }}
             >
               Home
             </Nav.Link>
             <Nav.Link
-              href="http://localhost:1234/users/profile"
+              href="https://marvel-flix-app.netlify.app/profile"
               style={{ color: "white" }}
             >
               Profile
