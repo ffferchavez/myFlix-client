@@ -16,22 +16,28 @@ export const ProfileView = ({
       : [];
 
   return (
-    <Container>
-      <Row>
-        <Col md={6}>
-          <h2>Account Information</h2>
-          <AccountDetails user={user} onAccountUpdate={onAccountUpdate} />
-        </Col>
-      </Row>
-      <Row>
-        <Col md={12}>
-          <FavouriteMovies
-            favouriteMovieList={favouriteMovieList}
-            user={user}
-            onFavouritesUpdate={onFavouritesUpdate}
-          />
-        </Col>
-      </Row>
-    </Container>
+    <div>
+      <Container
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Row className="w-100">
+          <Col md={6} className="mx-auto">
+            <AccountDetails user={user} onAccountUpdate={onAccountUpdate} />
+          </Col>
+        </Row>
+      </Container>
+      <Container>
+        <Row>
+          <Col>
+            <FavouriteMovies
+              favouriteMovieList={favouriteMovieList}
+              user={user}
+              onFavouritesUpdate={onFavouritesUpdate}
+            />
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
