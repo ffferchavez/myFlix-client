@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Modal from "react-bootstrap/Modal";
 
 export const AccountDetails = ({ user, onAccountUpdate }) => {
   const [username, setUsername] = useState(user.Username);
@@ -11,6 +13,7 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday.slice(0, 10));
   const [editMode, setEditMode] = useState(false); // State to toggle edit mode
+  const [showModal, setShowModal] = useState(false); // State to toggle modal visibility
 
   const toggleEditMode = () => {
     setEditMode(!editMode);
@@ -76,6 +79,10 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
   };
 
   const handleDeleteAccount = () => {
+    setShowModal(true);
+  };
+
+  const confirmDeleteAccount = () => {
     fetch(
       `https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${user._id}`,
       {
@@ -99,93 +106,119 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
         console.error("Error deleting account:", error);
         alert("Failed to delete account. Please try again.");
       });
+    setShowModal(false);
   };
 
   return (
     <>
-      {!editMode ? (
-        <div>
-          <h2>Account Information</h2>
-          <p>
-            <strong>Username:</strong> {username}
-          </p>
-          <p>
-            <strong>Email:</strong> {email}
-          </p>
-          <p>
-            <strong>Birthday:</strong> {birthday}
-          </p>
-          <Button variant="primary" onClick={toggleEditMode}>
-            Edit Information
+      <Container
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Row>
+          <Col>
+            {!editMode ? (
+              <div>
+                <h2 className="text-center">Account Information</h2>
+                <p>
+                  <strong>Username:</strong> {username}
+                </p>
+                <p>
+                  <strong>Email:</strong> {email}
+                </p>
+                <p>
+                  <strong>Birthday:</strong> {birthday}
+                </p>
+                <Button
+                  variant="primary"
+                  className="me-2"
+                  onClick={toggleEditMode}
+                >
+                  Edit Information
+                </Button>
+                <Button variant="outline-danger" onClick={handleDeleteAccount}>
+                  Delete Account Permanently
+                </Button>
+              </div>
+            ) : (
+              <Form onSubmit={handleSubmit} className="mb-5">
+                <Form.Group className="mb-2" controlId="profileFormUsername">
+                  <Form.Label>Username:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="username"
+                    value={username}
+                    onChange={handleUpdate}
+                    minLength="8"
+                    required
+                  />
+                </Form.Group>
+                <Form.Group className="mb-2" controlId="profileFormPassword">
+                  <Form.Label>Password:</Form.Label>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    value={password}
+                    onChange={handleUpdate}
+                    minLength="10"
+                    required
+                  />
+                </Form.Group>
+                <Form.Group className="mb-2" controlId="profileFormEmail">
+                  <Form.Label>Email:</Form.Label>
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={handleUpdate}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group className="mb-2" controlId="profileFormBirthday">
+                  <Form.Label>Birthdate:</Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="birthday"
+                    value={birthday}
+                    onChange={handleUpdate}
+                    required
+                  />
+                </Form.Group>
+                <Row className="my-4">
+                  <Col className="d-flex justify-content-between">
+                    <Button variant="primary" type="submit">
+                      Update
+                    </Button>
+                    <Button
+                      variant="outline-secondary"
+                      onClick={toggleEditMode}
+                    >
+                      Cancel
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
+            )}
+          </Col>
+        </Row>
+      </Container>
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Account Deletion</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete your account permanently? This action
+          cannot be undone.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
           </Button>
-        </div>
-      ) : (
-        <Form onSubmit={handleSubmit} className="mb-5">
-          <Form.Group className="mb-2" controlId="profileFormUsername">
-            <Form.Label>Username:</Form.Label>
-            <Form.Control
-              type="text"
-              name="username"
-              value={username}
-              onChange={handleUpdate}
-              minLength="8"
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-2" controlId="profileFormPassword">
-            <Form.Label>Password:</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              value={password}
-              onChange={handleUpdate}
-              minLength="10"
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-2" controlId="profileFormEmail">
-            <Form.Label>Email:</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleUpdate}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-2" controlId="profileFormBirthday">
-            <Form.Label>Birthdate:</Form.Label>
-            <Form.Control
-              type="date"
-              name="birthday"
-              value={birthday}
-              onChange={handleUpdate}
-              required
-            />
-          </Form.Group>
-          <Row className="my-4">
-            <Col>
-              <Button variant="primary" type="submit">
-                Update
-              </Button>
-              <Button variant="outline-secondary" onClick={toggleEditMode}>
-                Cancel
-              </Button>
-            </Col>
-          </Row>
-        </Form>
-      )}
-      <Row>
-        <Col>
-          <Button
-            type="button"
-            onClick={handleDeleteAccount}
-            variant="outline-secondary"
-          >
-            Delete Account Permanently
+          <Button variant="danger" onClick={confirmDeleteAccount}>
+            Delete
           </Button>
-        </Col>
-      </Row>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

@@ -36,7 +36,7 @@ function NavigationBar({ onLogout }) {
     >
       <Container fluid>
         <Navbar.Brand href="http://localhost:1234/movies">
-          Marvel Universe
+          Marvel Studios
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
