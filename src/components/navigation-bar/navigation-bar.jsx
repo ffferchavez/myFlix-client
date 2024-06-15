@@ -30,6 +30,7 @@ function NavigationBar({ onLogout }) {
   return (
     <Navbar
       expand="lg"
+      fixed="top"
       className="bg-body-tertiary mb-3"
       onToggle={toggleNavbar}
       expanded={isNavExpanded}
