@@ -12,8 +12,8 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday.slice(0, 10));
-  const [editMode, setEditMode] = useState(false); // State to toggle edit mode
-  const [showModal, setShowModal] = useState(false); // State to toggle modal visibility
+  const [editMode, setEditMode] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const toggleEditMode = () => {
     setEditMode(!editMode);
@@ -46,67 +46,66 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
       Username: username,
       Email: email,
       Birthday: birthday,
-      // Note: You might want to handle password updates securely
     };
 
-    fetch(
-      `https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${user._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(updatedProfile),
-      }
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to update account");
+    try {
+      const response = await fetch(
+        `https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${user._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(updatedProfile),
         }
-        return response.json();
-      })
-      .then((updatedUser) => {
-        localStorage.setItem("user", JSON.stringify(updatedUser));
-        onAccountUpdate(updatedUser);
-        alert("Account updated successfully.");
-        setEditMode(false); // Exit edit mode after successful update
-      })
-      .catch((error) => {
-        console.error("Error updating account:", error);
-        alert("Failed to update account. Please try again.");
-      });
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update account");
+      }
+
+      const updatedUser = await response.json();
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      onAccountUpdate(updatedUser);
+      alert("Account updated successfully.");
+      setEditMode(false); // Exit edit mode after successful update
+    } catch (error) {
+      console.error("Error updating account:", error);
+      alert("Failed to update account. Please try again.");
+    }
   };
 
   const handleDeleteAccount = () => {
     setShowModal(true);
   };
 
-  const confirmDeleteAccount = () => {
-    fetch(
-      `https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${user._id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          alert("Account deleted successfully.");
-          localStorage.clear();
-          window.location.reload();
-        } else {
-          throw new Error("Failed to delete account");
+  const confirmDeleteAccount = async () => {
+    try {
+      const response = await fetch(
+        `https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${user._id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
         }
-      })
-      .catch((error) => {
-        console.error("Error deleting account:", error);
-        alert("Failed to delete account. Please try again.");
-      });
-    setShowModal(false);
+      );
+
+      if (response.ok) {
+        alert("Account deleted successfully.");
+        localStorage.clear();
+        window.location.reload();
+      } else {
+        throw new Error("Failed to delete account");
+      }
+    } catch (error) {
+      console.error("Error deleting account:", error);
+      alert("Failed to delete account. Please try again.");
+    } finally {
+      setShowModal(false);
+    }
   };
 
   return (
@@ -117,7 +116,7 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
       >
         <Row>
           <Col>
-            {!editMode ? (
+            {!editMode && (
               <div>
                 <h2 className="text-center">Account Information</h2>
                 <p>
@@ -140,7 +139,9 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
                   Delete Account Permanently
                 </Button>
               </div>
-            ) : (
+            )}
+
+            {editMode && (
               <Form onSubmit={handleSubmit} className="mb-5">
                 <Form.Group className="mb-2" controlId="profileFormUsername">
                   <Form.Label>Username:</Form.Label>
@@ -202,6 +203,7 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
           </Col>
         </Row>
       </Container>
+
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Account Deletion</Modal.Title>
@@ -229,7 +231,8 @@ AccountDetails.propTypes = {
     Username: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,
     Birthday: PropTypes.string.isRequired,
-    FavouriteMovies: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   onAccountUpdate: PropTypes.func.isRequired,
 };
+
+export default AccountDetails;

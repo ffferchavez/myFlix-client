@@ -27318,40 +27318,56 @@ const MainView = ()=>{
                 className: "justify-content-md-center",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Routes), {
                     children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                        user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                             path: "/signup",
-                            element: user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                                 to: "/"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 72,
-                                columnNumber: 17
-                            }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                md: 5,
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 75,
-                                    columnNumber: 19
-                                }, void 0)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 74,
-                                columnNumber: 17
+                                lineNumber: 68,
+                                columnNumber: 51
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
                             lineNumber: 68,
-                            columnNumber: 11
+                            columnNumber: 20
                         }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                        !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                            path: "/signup",
+                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                md: 5,
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
+                                    fileName: "src/components/main-view/main-view.jsx",
+                                    lineNumber: 74,
+                                    columnNumber: 19
+                                }, void 0)
+                            }, void 0, false, {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 73,
+                                columnNumber: 17
+                            }, void 0)
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 70,
+                            columnNumber: 13
+                        }, undefined),
+                        user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                             path: "/login",
-                            element: user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                                 to: "/"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 84,
-                                columnNumber: 17
-                            }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                lineNumber: 80,
+                                columnNumber: 50
+                            }, void 0)
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 80,
+                            columnNumber: 20
+                        }, undefined),
+                        !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                            path: "/login",
+                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 md: 5,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
                                     onLoggedIn: (user, token)=>{
@@ -27362,34 +27378,27 @@ const MainView = ()=>{
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 87,
+                                    lineNumber: 86,
                                     columnNumber: 19
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 86,
+                                lineNumber: 85,
                                 columnNumber: 17
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 80,
-                            columnNumber: 11
+                            lineNumber: 82,
+                            columnNumber: 13
                         }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                        user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                             path: "/movies",
-                            element: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
-                                to: "/login",
-                                replace: true
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 103,
-                                columnNumber: 17
-                            }, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            element: movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 children: "The list is empty!"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 105,
-                                columnNumber: 17
+                                lineNumber: 104,
+                                columnNumber: 19
                             }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                 children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                         className: "mb-5 mt-5",
@@ -27399,30 +27408,31 @@ const MainView = ()=>{
                                             onMovieClick: ()=>setSelectedMovieId(movie._id)
                                         }, void 0, false, {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 110,
-                                            columnNumber: 23
+                                            lineNumber: 109,
+                                            columnNumber: 25
                                         }, void 0)
                                     }, movie._id, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 109,
-                                        columnNumber: 21
+                                        lineNumber: 108,
+                                        columnNumber: 23
                                     }, void 0))
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 99,
-                            columnNumber: 11
+                            lineNumber: 100,
+                            columnNumber: 13
                         }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                        !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                            to: "/login",
+                            replace: true
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 120,
+                            columnNumber: 21
+                        }, undefined),
+                        user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                             path: "/movies/:movieId",
-                            element: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
-                                to: "/login",
-                                replace: true
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 124,
-                                columnNumber: 17
-                            }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 md: 8,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieViewDefault.default), {
                                     movies: movies
@@ -27438,19 +27448,20 @@ const MainView = ()=>{
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 120,
-                            columnNumber: 11
+                            lineNumber: 123,
+                            columnNumber: 13
                         }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                        !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                            to: "/login",
+                            replace: true
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 132,
+                            columnNumber: 21
+                        }, undefined),
+                        user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                             path: "/users/profile",
-                            element: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
-                                to: "/login",
-                                replace: true
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 136,
-                                columnNumber: 17
-                            }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
+                            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
                                 user: user,
                                 movies: movies,
                                 onAccountUpdate: (updatedUser)=>setUser(updatedUser),
@@ -27462,8 +27473,16 @@ const MainView = ()=>{
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 132,
-                            columnNumber: 11
+                            lineNumber: 135,
+                            columnNumber: 13
+                        }, undefined),
+                        !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                            to: "/login",
+                            replace: true
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 147,
+                            columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                             path: "/",
@@ -27471,12 +27490,12 @@ const MainView = ()=>{
                                 to: "/movies"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 147,
+                                lineNumber: 149,
                                 columnNumber: 36
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 147,
+                            lineNumber: 149,
                             columnNumber: 11
                         }, undefined)
                     ]
@@ -43040,8 +43059,8 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
     const [password, setPassword] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)(user.Email);
     const [birthday, setBirthday] = (0, _react.useState)(user.Birthday.slice(0, 10));
-    const [editMode, setEditMode] = (0, _react.useState)(false); // State to toggle edit mode
-    const [showModal, setShowModal] = (0, _react.useState)(false); // State to toggle modal visibility
+    const [editMode, setEditMode] = (0, _react.useState)(false);
+    const [showModal, setShowModal] = (0, _react.useState)(false);
     const toggleEditMode = ()=>{
         setEditMode(!editMode);
     };
@@ -43071,47 +43090,49 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
             Email: email,
             Birthday: birthday
         };
-        fetch(`https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${user._id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`
-            },
-            body: JSON.stringify(updatedProfile)
-        }).then((response)=>{
+        try {
+            const response = await fetch(`https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${user._id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify(updatedProfile)
+            });
             if (!response.ok) throw new Error("Failed to update account");
-            return response.json();
-        }).then((updatedUser)=>{
+            const updatedUser = await response.json();
             localStorage.setItem("user", JSON.stringify(updatedUser));
             onAccountUpdate(updatedUser);
             alert("Account updated successfully.");
             setEditMode(false); // Exit edit mode after successful update
-        }).catch((error)=>{
+        } catch (error) {
             console.error("Error updating account:", error);
             alert("Failed to update account. Please try again.");
-        });
+        }
     };
     const handleDeleteAccount = ()=>{
         setShowModal(true);
     };
-    const confirmDeleteAccount = ()=>{
-        fetch(`https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${user._id}`, {
-            method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json"
-            }
-        }).then((response)=>{
+    const confirmDeleteAccount = async ()=>{
+        try {
+            const response = await fetch(`https://movies-myflix-api-84dbf8740f2d.herokuapp.com/users/${user._id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    "Content-Type": "application/json"
+                }
+            });
             if (response.ok) {
                 alert("Account deleted successfully.");
                 localStorage.clear();
                 window.location.reload();
             } else throw new Error("Failed to delete account");
-        }).catch((error)=>{
+        } catch (error) {
             console.error("Error deleting account:", error);
             alert("Failed to delete account. Please try again.");
-        });
-        setShowModal(false);
+        } finally{
+            setShowModal(false);
+        }
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
@@ -43122,262 +43143,265 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                 },
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                        children: !editMode ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                                    className: "text-center",
-                                    children: "Account Information"
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/account-details.jsx",
-                                    lineNumber: 122,
-                                    columnNumber: 17
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
-                                            children: "Username:"
-                                        }, void 0, false, {
-                                            fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 124,
-                                            columnNumber: 19
-                                        }, undefined),
-                                        " ",
-                                        username
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "src/components/profile-view/account-details.jsx",
-                                    lineNumber: 123,
-                                    columnNumber: 17
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
-                                            children: "Email:"
-                                        }, void 0, false, {
-                                            fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 127,
-                                            columnNumber: 19
-                                        }, undefined),
-                                        " ",
-                                        email
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "src/components/profile-view/account-details.jsx",
-                                    lineNumber: 126,
-                                    columnNumber: 17
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
-                                            children: "Birthday:"
-                                        }, void 0, false, {
-                                            fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 130,
-                                            columnNumber: 19
-                                        }, undefined),
-                                        " ",
-                                        birthday
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "src/components/profile-view/account-details.jsx",
-                                    lineNumber: 129,
-                                    columnNumber: 17
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                    variant: "primary",
-                                    className: "me-2",
-                                    onClick: toggleEditMode,
-                                    children: "Edit Information"
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/account-details.jsx",
-                                    lineNumber: 132,
-                                    columnNumber: 17
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                    variant: "outline-danger",
-                                    onClick: handleDeleteAccount,
-                                    children: "Delete Account Permanently"
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/account-details.jsx",
-                                    lineNumber: 139,
-                                    columnNumber: 17
-                                }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/profile-view/account-details.jsx",
-                            lineNumber: 121,
-                            columnNumber: 15
-                        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
-                            onSubmit: handleSubmit,
-                            className: "mb-5",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                                    className: "mb-2",
-                                    controlId: "profileFormUsername",
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                            children: "Username:"
-                                        }, void 0, false, {
-                                            fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 146,
-                                            columnNumber: 19
-                                        }, undefined),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                            type: "text",
-                                            name: "username",
-                                            value: username,
-                                            onChange: handleUpdate,
-                                            minLength: "8",
-                                            required: true
-                                        }, void 0, false, {
-                                            fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 147,
-                                            columnNumber: 19
-                                        }, undefined)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "src/components/profile-view/account-details.jsx",
-                                    lineNumber: 145,
-                                    columnNumber: 17
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                                    className: "mb-2",
-                                    controlId: "profileFormPassword",
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                            children: "Password:"
-                                        }, void 0, false, {
-                                            fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 157,
-                                            columnNumber: 19
-                                        }, undefined),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                            type: "password",
-                                            name: "password",
-                                            value: password,
-                                            onChange: handleUpdate,
-                                            minLength: "10",
-                                            required: true
-                                        }, void 0, false, {
-                                            fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 158,
-                                            columnNumber: 19
-                                        }, undefined)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "src/components/profile-view/account-details.jsx",
-                                    lineNumber: 156,
-                                    columnNumber: 17
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                                    className: "mb-2",
-                                    controlId: "profileFormEmail",
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                            children: "Email:"
-                                        }, void 0, false, {
-                                            fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 168,
-                                            columnNumber: 19
-                                        }, undefined),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                            type: "email",
-                                            name: "email",
-                                            value: email,
-                                            onChange: handleUpdate,
-                                            required: true
-                                        }, void 0, false, {
-                                            fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 169,
-                                            columnNumber: 19
-                                        }, undefined)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "src/components/profile-view/account-details.jsx",
-                                    lineNumber: 167,
-                                    columnNumber: 17
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                                    className: "mb-2",
-                                    controlId: "profileFormBirthday",
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                            children: "Birthdate:"
-                                        }, void 0, false, {
-                                            fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 178,
-                                            columnNumber: 19
-                                        }, undefined),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                            type: "date",
-                                            name: "birthday",
-                                            value: birthday,
-                                            onChange: handleUpdate,
-                                            required: true
-                                        }, void 0, false, {
-                                            fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 179,
-                                            columnNumber: 19
-                                        }, undefined)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "src/components/profile-view/account-details.jsx",
-                                    lineNumber: 177,
-                                    columnNumber: 17
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                                    className: "my-4",
-                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                        className: "d-flex justify-content-between",
+                        children: [
+                            !editMode && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                                        className: "text-center",
+                                        children: "Account Information"
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/account-details.jsx",
+                                        lineNumber: 121,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                         children: [
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                                variant: "primary",
-                                                type: "submit",
-                                                children: "Update"
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                                                children: "Username:"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
-                                                lineNumber: 189,
-                                                columnNumber: 21
+                                                lineNumber: 123,
+                                                columnNumber: 19
                                             }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                                variant: "outline-secondary",
-                                                onClick: toggleEditMode,
-                                                children: "Cancel"
+                                            " ",
+                                            username
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/profile-view/account-details.jsx",
+                                        lineNumber: 122,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                                                children: "Email:"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
-                                                lineNumber: 192,
-                                                columnNumber: 21
+                                                lineNumber: 126,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            " ",
+                                            email
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/profile-view/account-details.jsx",
+                                        lineNumber: 125,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
+                                                children: "Birthday:"
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/account-details.jsx",
+                                                lineNumber: 129,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            " ",
+                                            birthday
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/profile-view/account-details.jsx",
+                                        lineNumber: 128,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                        variant: "primary",
+                                        className: "me-2",
+                                        onClick: toggleEditMode,
+                                        children: "Edit Information"
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/account-details.jsx",
+                                        lineNumber: 131,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                        variant: "outline-danger",
+                                        onClick: handleDeleteAccount,
+                                        children: "Delete Account Permanently"
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/account-details.jsx",
+                                        lineNumber: 138,
+                                        columnNumber: 17
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/profile-view/account-details.jsx",
+                                lineNumber: 120,
+                                columnNumber: 15
+                            }, undefined),
+                            editMode && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
+                                onSubmit: handleSubmit,
+                                className: "mb-5",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                        className: "mb-2",
+                                        controlId: "profileFormUsername",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                                children: "Username:"
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/account-details.jsx",
+                                                lineNumber: 147,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                                type: "text",
+                                                name: "username",
+                                                value: username,
+                                                onChange: handleUpdate,
+                                                minLength: "8",
+                                                required: true
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/account-details.jsx",
+                                                lineNumber: 148,
+                                                columnNumber: 19
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/account-details.jsx",
+                                        lineNumber: 146,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                        className: "mb-2",
+                                        controlId: "profileFormPassword",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                                children: "Password:"
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/account-details.jsx",
+                                                lineNumber: 158,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                                type: "password",
+                                                name: "password",
+                                                value: password,
+                                                onChange: handleUpdate,
+                                                minLength: "10",
+                                                required: true
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/account-details.jsx",
+                                                lineNumber: 159,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/profile-view/account-details.jsx",
+                                        lineNumber: 157,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                        className: "mb-2",
+                                        controlId: "profileFormEmail",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                                children: "Email:"
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/account-details.jsx",
+                                                lineNumber: 169,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                                type: "email",
+                                                name: "email",
+                                                value: email,
+                                                onChange: handleUpdate,
+                                                required: true
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/account-details.jsx",
+                                                lineNumber: 170,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/profile-view/account-details.jsx",
+                                        lineNumber: 168,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                        className: "mb-2",
+                                        controlId: "profileFormBirthday",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                                children: "Birthdate:"
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/account-details.jsx",
+                                                lineNumber: 179,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                                type: "date",
+                                                name: "birthday",
+                                                value: birthday,
+                                                onChange: handleUpdate,
+                                                required: true
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/account-details.jsx",
+                                                lineNumber: 180,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/profile-view/account-details.jsx",
+                                        lineNumber: 178,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+                                        className: "my-4",
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                            className: "d-flex justify-content-between",
+                                            children: [
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                                    variant: "primary",
+                                                    type: "submit",
+                                                    children: "Update"
+                                                }, void 0, false, {
+                                                    fileName: "src/components/profile-view/account-details.jsx",
+                                                    lineNumber: 190,
+                                                    columnNumber: 21
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                                    variant: "outline-secondary",
+                                                    onClick: toggleEditMode,
+                                                    children: "Cancel"
+                                                }, void 0, false, {
+                                                    fileName: "src/components/profile-view/account-details.jsx",
+                                                    lineNumber: 193,
+                                                    columnNumber: 21
+                                                }, undefined)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "src/components/profile-view/account-details.jsx",
+                                            lineNumber: 189,
+                                            columnNumber: 19
+                                        }, undefined)
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/account-details.jsx",
                                         lineNumber: 188,
-                                        columnNumber: 19
+                                        columnNumber: 17
                                     }, undefined)
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/account-details.jsx",
-                                    lineNumber: 187,
-                                    columnNumber: 17
-                                }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/profile-view/account-details.jsx",
-                            lineNumber: 144,
-                            columnNumber: 15
-                        }, undefined)
-                    }, void 0, false, {
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/profile-view/account-details.jsx",
+                                lineNumber: 145,
+                                columnNumber: 15
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/profile-view/account-details.jsx",
-                        lineNumber: 119,
+                        lineNumber: 118,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/account-details.jsx",
-                    lineNumber: 118,
+                    lineNumber: 117,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/account-details.jsx",
-                lineNumber: 114,
+                lineNumber: 113,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _modalDefault.default), {
@@ -43390,19 +43414,19 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                             children: "Confirm Account Deletion"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/account-details.jsx",
-                            lineNumber: 207,
+                            lineNumber: 209,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/account-details.jsx",
-                        lineNumber: 206,
+                        lineNumber: 208,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _modalDefault.default).Body, {
                         children: "Are you sure you want to delete your account permanently? This action cannot be undone."
                     }, void 0, false, {
                         fileName: "src/components/profile-view/account-details.jsx",
-                        lineNumber: 209,
+                        lineNumber: 211,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _modalDefault.default).Footer, {
@@ -43413,7 +43437,7 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                 children: "Cancel"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/account-details.jsx",
-                                lineNumber: 214,
+                                lineNumber: 216,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -43422,19 +43446,19 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                 children: "Delete"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/account-details.jsx",
-                                lineNumber: 217,
+                                lineNumber: 219,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/account-details.jsx",
-                        lineNumber: 213,
+                        lineNumber: 215,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/account-details.jsx",
-                lineNumber: 205,
+                lineNumber: 207,
                 columnNumber: 7
             }, undefined)
         ]
@@ -43447,11 +43471,11 @@ AccountDetails.propTypes = {
         _id: (0, _propTypesDefault.default).string.isRequired,
         Username: (0, _propTypesDefault.default).string.isRequired,
         Email: (0, _propTypesDefault.default).string.isRequired,
-        Birthday: (0, _propTypesDefault.default).string.isRequired,
-        FavouriteMovies: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).string)
+        Birthday: (0, _propTypesDefault.default).string.isRequired
     }).isRequired,
     onAccountUpdate: (0, _propTypesDefault.default).func.isRequired
 };
+exports.default = AccountDetails;
 var _c;
 $RefreshReg$(_c, "AccountDetails");
 

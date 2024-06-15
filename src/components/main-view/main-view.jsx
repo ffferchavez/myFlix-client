@@ -65,24 +65,23 @@ const MainView = () => {
       />
       <Row className="justify-content-md-center">
         <Routes>
-          <Route
-            path="/signup"
-            element={
-              user ? (
-                <Navigate to="/" />
-              ) : (
+          {user && <Route path="/signup" element={<Navigate to="/" />} />}
+          {!user && (
+            <Route
+              path="/signup"
+              element={
                 <Col md={5}>
                   <SignupView />
                 </Col>
-              )
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              user ? (
-                <Navigate to="/" />
-              ) : (
+              }
+            />
+          )}
+
+          {user && <Route path="/login" element={<Navigate to="/" />} />}
+          {!user && (
+            <Route
+              path="/login"
+              element={
                 <Col md={5}>
                   <LoginView
                     onLoggedIn={(user, token) => {
@@ -93,57 +92,60 @@ const MainView = () => {
                     }}
                   />
                 </Col>
-              )
-            }
-          />
-          <Route
-            path="/movies"
-            element={
-              !user ? (
-                <Navigate to="/login" replace />
-              ) : movies.length === 0 ? (
-                <Col>The list is empty!</Col>
-              ) : (
-                <>
-                  {movies.map((movie) => (
-                    <Col className="mb-5 mt-5" key={movie._id} md={3}>
-                      <MovieCard
-                        movie={movie}
-                        onMovieClick={() => setSelectedMovieId(movie._id)}
-                      />
-                    </Col>
-                  ))}
-                </>
-              )
-            }
-          />
-          <Route
-            path="/movies/:movieId"
-            element={
-              !user ? (
-                <Navigate to="/login" replace />
-              ) : (
+              }
+            />
+          )}
+
+          {user && (
+            <Route
+              path="/movies"
+              element={
+                movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <>
+                    {movies.map((movie) => (
+                      <Col className="mb-5 mt-5" key={movie._id} md={3}>
+                        <MovieCard
+                          movie={movie}
+                          onMovieClick={() => setSelectedMovieId(movie._id)}
+                        />
+                      </Col>
+                    ))}
+                  </>
+                )
+              }
+            />
+          )}
+          {!user && <Navigate to="/login" replace />}
+
+          {user && (
+            <Route
+              path="/movies/:movieId"
+              element={
                 <Col md={8}>
                   <MovieView movies={movies} />
                 </Col>
-              )
-            }
-          />
-          <Route
-            path="/users/profile"
-            element={
-              !user ? (
-                <Navigate to="/login" replace />
-              ) : (
+              }
+            />
+          )}
+          {!user && <Navigate to="/login" replace />}
+
+          {user && (
+            <Route
+              path="/users/profile"
+              element={
                 <ProfileView
                   user={user}
-                  movies={movies} // Pass movies array
+                  movies={movies}
                   onAccountUpdate={(updatedUser) => setUser(updatedUser)}
                   onFavouritesUpdate={(updatedUser) => setUser(updatedUser)}
                 />
-              )
-            }
-          />
+              }
+            />
+          )}
+          {!user && <Navigate to="/login" replace />}
+
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
       </Row>
