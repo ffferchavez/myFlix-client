@@ -14,8 +14,8 @@ export const MovieCard = ({ movie }) => {
       <Card className="h-100 w-100" style={{ cursor: "pointer" }}>
         <Card.Img
           variant="top"
-          src={movie.imagePath}
-          alt={movie.title}
+          src={movie.ImagePath}
+          alt={movie.Title}
           style={{ objectFit: "cover", height: "400px" }}
         />
         <Card.Body>

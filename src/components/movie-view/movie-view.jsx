@@ -1,115 +1,103 @@
-import { useState, useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { useParams, Link } from "react-router-dom";
+import React from "react";
+import PropTypes from "prop-types";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-export const MovieView = ({ token }) => {
-  const { id } = useParams(); // Use useParams to get the id from the route
-  const [movie, setMovie] = useState(null);
+const MovieView = ({ movies }) => {
+  const { movieId } = useParams();
+  const movieData = movies.find((mov) => mov._id === movieId);
 
-  useEffect(() => {
-    if (!token || !id) return;
-
-    const fetchMovieData = async () => {
-      try {
-        console.log("Fetching movie data for ID:", id);
-        console.log("Using token:", token);
-
-        const response = await fetch(
-          `https://marvel-flix-c3644575f8db.herokuapp.com/movies/${movie._id}`, // Correctly forms the URL with `/movies/:id`
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-
-        const responseData = await response.json(); // Parse the response as JSON
-        console.log("Movie data fetched:", responseData);
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        setMovie(responseData);
-      } catch (error) {
-        console.error("Error fetching movie data:", error);
-      }
-    };
-
-    fetchMovieData();
-  }, [token, id]);
-
-  if (!movie) {
+  if (!movieData) {
     return <div>Loading...</div>;
   }
 
+  function formatDate(string) {
+    var options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(string).toLocaleDateString("en-US", options);
+  }
+
   return (
-    <Container className="my-4">
-      <Row>
+    <div className="bg-light m-5 rounded-3 nomargin-rf">
+      <Row className="p-5 padding-sm">
         <Col md={6}>
+          <h2 className="mb-2">{movieData.Title}</h2>
+          <Row className="mb-4 text-secondary">
+            <Col md="auto">
+              <h4>{movieData.Director.Name}</h4>
+            </Col>
+            <Col></Col>
+            <Col md="auto">
+              <h5 className="text-dark">{movieData.Genre.Name}</h5>
+            </Col>
+          </Row>
+          <Col md={12} className="mb-4">
+            <p>{movieData.Description}</p>
+          </Col>
+          <Col md={12} className="mb-4">
+            <h4>Director</h4>
+            <p>
+              <strong>Bio: </strong>
+              {movieData.Director.Bio}
+            </p>
+            <p>
+              <strong>Birth: </strong>
+              {formatDate(movieData.Director.Birth)}
+            </p>
+            <p>
+              <strong>Death: </strong>
+              {movieData.Director.Death
+                ? formatDate(movieData.Director.Death)
+                : "N/A"}
+            </p>
+          </Col>
+          <Col md={12} className="mb-4">
+            <h4>Genre</h4>
+            <p>
+              <strong>Description: </strong>
+              {movieData.Genre.Description}
+            </p>
+          </Col>
+        </Col>
+        <Col md={6} className="text-center mb-5">
           <img
-            src={movie.imagePath}
-            alt={movie.title}
-            className="img-fluid w-100 h-100"
+            className="img-fluid"
+            src={movieData.ImagePath}
+            alt={movieData.Title}
           />
         </Col>
-        <Col md={6}>
-          <Card>
-            <Card.Body>
-              <div className="d-flex flex-column">
-                <Card.Title className="mb-2">{movie.title}</Card.Title>
-                <p className="mb-3">{movie.description}</p>
-
-                <div className="d-flex justify-content-between align-items-center mb-2">
-                  <span className="font-weight-bold">Genre:</span>
-                  <span>{movie.genre?.Name || "N/A"}</span>
-                </div>
-
-                <div className="d-flex flex-column mb-2">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span className="font-weight-bold">Director:</span>
-                    <div>{movie.director?.Name || "N/A"}</div>
-                  </div>
-                  {(movie.director?.Bio ||
-                    movie.director?.Birth ||
-                    movie.director?.Death) && (
-                    <div className="mt-1 ml-3">
-                      {movie.director?.Bio && (
-                        <div>
-                          <div className="font-weight-bold">Bio:</div>
-                          <div className="ml-1">{movie.director?.Bio}</div>
-                        </div>
-                      )}
-                      <div className="d-flex">
-                        {movie.director?.Birth && (
-                          <div>
-                            <div className="font-weight-bold">Birth:</div>
-                            <div className="ml-1">{movie.director?.Birth}</div>
-                          </div>
-                        )}
-                        {movie.director?.Death && (
-                          <div className="ml-3">
-                            <div className="font-weight-bold">Death:</div>
-                            <div className="ml-1">{movie.director?.Death}</div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="d-flex justify-content-between align-items-center mb-3">
-                  <span className="font-weight-bold">Featured:</span>
-                  <span>{movie.featured ? "Yes" : "No"}</span>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
+        <Col md={12}>
+          <Link to={`/`}>
+            <Button variant="primary">Back</Button>
+          </Link>
         </Col>
       </Row>
-      <Link to={`/movies`}>
-        <Button className="back-button d-flex justify-content-between align-items-center mt-4">
-          Back
-        </Button>
-      </Link>
-    </Container>
+    </div>
   );
 };
+
+MovieView.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      Title: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired,
+      ImagePath: PropTypes.string.isRequired,
+      Featured: PropTypes.bool.isRequired,
+      Genre: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+      }),
+      Director: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+        Bio: PropTypes.string.isRequired,
+        Birth: PropTypes.string.isRequired,
+        Death: PropTypes.string,
+      }),
+    })
+  ).isRequired,
+};
+
+export default MovieView;

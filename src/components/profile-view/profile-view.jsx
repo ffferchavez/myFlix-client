@@ -8,27 +8,37 @@ const ProfileView = ({ token }) => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
-    if (!token) return;
+    if (!token || !id) return;
 
+    // Fetch user profile data
     fetch(`https://marvel-flix-c3644575f8db.herokuapp.com/users/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((userData) => {
         setUserData(userData);
 
         // Fetch favorite movies based on user's FavoriteMovies array
         const favoriteMovieIds = userData.FavoriteMovies || [];
         Promise.all(
-          favoriteMovieIds.map((movie) =>
+          favoriteMovieIds.map((movieId) =>
             fetch(
-              `https://marvel-flix-c3644575f8db.herokuapp.com/movies/${movie._id}`,
+              `https://marvel-flix-c3644575f8db.herokuapp.com/movies/${movieId}`,
               {
                 headers: { Authorization: `Bearer ${token}` },
               }
             ).then((response) => response.json())
           )
-        ).then((favoriteMovies) => setFavoriteMovies(favoriteMovies));
+        )
+          .then((favoriteMoviesData) => setFavoriteMovies(favoriteMoviesData))
+          .catch((error) => {
+            console.error("Error fetching favorite movies:", error);
+          });
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
