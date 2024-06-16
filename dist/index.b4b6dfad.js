@@ -41848,7 +41848,7 @@ function NavigationBar({ onLogout, onSearch }) {
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
                                     className: "profile-link",
-                                    href: "https://marvel-flix-app.netlify.app/profile",
+                                    href: "/profile",
                                     style: {
                                         color: "white"
                                     },

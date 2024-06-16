@@ -63,7 +63,7 @@ function NavigationBar({ onLogout, onSearch }) {
             </Nav.Link>
             <Nav.Link
               className="profile-link"
-              href="https://marvel-flix-app.netlify.app/profile"
+              href="/profile"
               style={{ color: "white" }}
             >
               Profile
