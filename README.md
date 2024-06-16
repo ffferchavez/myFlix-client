@@ -1,5 +1,3 @@
-Here's an updated version of your README file with the requested changes:
-
 # Marvel-Flix
 
 Marvel-Flix is a web application that allows users to browse and view information about movies in the Marvel Cinematic Universe. The application was built using React, React Router, and Bootstrap, and it consumes my own RESTful API to retrieve movie data.
