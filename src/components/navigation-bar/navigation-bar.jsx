@@ -55,7 +55,7 @@ function NavigationBar({ onLogout, onSearch }) {
             navbarScroll
           >
             <Nav.Link
-              href="https://marvel-flix-app.netlify.app/home"
+              href="https://marvel-flix-app.netlify.app"
               style={{ color: "white" }}
             >
               Home

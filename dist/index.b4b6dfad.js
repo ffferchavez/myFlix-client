@@ -41801,7 +41801,7 @@ function NavigationBar({ onLogout, onSearch }) {
             fluid: true,
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default).Brand, {
-                    href: "http://localhost:1234/movies",
+                    href: "https://marvel-flix-app.netlify.app/movies",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                         src: (0, _navbarLogoJpegDefault.default),
                         height: "30",
@@ -41835,7 +41835,7 @@ function NavigationBar({ onLogout, onSearch }) {
                             navbarScroll: true,
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
-                                    href: "http://localhost:1234/movies",
+                                    href: "https://marvel-flix-app.netlify.app",
                                     style: {
                                         color: "white"
                                     },
@@ -41846,7 +41846,7 @@ function NavigationBar({ onLogout, onSearch }) {
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
-                                    href: "http://localhost:1234/users/profile",
+                                    href: "https://marvel-flix-app.netlify.app/profile",
                                     style: {
                                         color: "white"
                                     },
