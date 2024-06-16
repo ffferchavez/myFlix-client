@@ -1,3 +1,5 @@
+Here's an updated version of your README file with the requested changes:
+
 # Marvel-Flix
 
 Marvel-Flix is a web application that allows users to browse and view information about movies in the Marvel Cinematic Universe. The application was built using React, React Router, and Bootstrap, and it consumes my own RESTful API to retrieve movie data.
@@ -10,6 +12,7 @@ Marvel-Flix is a web application that allows users to browse and view informatio
    - [Prerequisites](#prerequisites)
    - [Installation](#installation)
    - [Running the Application](#running-the-application)
+   - [Testing the Application](#testing-the-application)
 4. [File Structure](#file-structure)
 5. [Code Explanation](#code-explanation)
    - [Main Components](#main-components)
@@ -72,11 +75,18 @@ npm start
 
 2. Open your web browser and navigate to `http://localhost:1234`.
 
+### Testing the Application
+
+To test the Marvel-Flix application, you can use the following credentials:
+
+- **Username:** Manuel
+- **Password:** 11111
+
+Once logged in, you can explore the various features of the application.
+
 ## File Structure
 
-The project's file structure is as follows:
-
-```
+The project's file structure is as follows:```
 marvel-flix/
 ├── public/
 ├── src/
@@ -93,8 +103,7 @@ marvel-flix/
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
-└── README.md
-```
+└── README.md```
 
 ## Code Explanation
 
