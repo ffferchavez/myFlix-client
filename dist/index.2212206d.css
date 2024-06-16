@@ -13235,4 +13235,13 @@ body {
 .login-label, .signup-label {
   color: #fff;
 }
+
+.navbarLogo:hover {
+  transition: transform .5s;
+  transform: scale(1.1);
+}
+
+.home-link:hover, .profile-link:hover, .logout-link:hover {
+  color: #000;
+}
 /*# sourceMappingURL=index.2212206d.css.map */

@@ -41805,7 +41805,7 @@ function NavigationBar({ onLogout, onSearch }) {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                         src: (0, _navbarLogoJpegDefault.default),
                         height: "30",
-                        className: "d-inline-block align-top",
+                        className: "navbarLogo d-inline-block align-top",
                         alt: "Marvel Studios Logo"
                     }, void 0, false, {
                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
@@ -41835,6 +41835,7 @@ function NavigationBar({ onLogout, onSearch }) {
                             navbarScroll: true,
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
+                                    className: "home-link",
                                     href: "https://marvel-flix-app.netlify.app",
                                     style: {
                                         color: "white"
@@ -41846,6 +41847,7 @@ function NavigationBar({ onLogout, onSearch }) {
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
+                                    className: "profile-link",
                                     href: "https://marvel-flix-app.netlify.app/profile",
                                     style: {
                                         color: "white"
@@ -41853,10 +41855,11 @@ function NavigationBar({ onLogout, onSearch }) {
                                     children: "Profile"
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 63,
+                                    lineNumber: 64,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
+                                    className: "logout-link",
                                     onClick: handleLogout,
                                     style: {
                                         color: "white"
@@ -41864,7 +41867,7 @@ function NavigationBar({ onLogout, onSearch }) {
                                     children: "Log Out"
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 69,
+                                    lineNumber: 71,
                                     columnNumber: 13
                                 }, this)
                             ]
@@ -41886,7 +41889,7 @@ function NavigationBar({ onLogout, onSearch }) {
                                     onChange: (e)=>setSearchQuery(e.target.value)
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 74,
+                                    lineNumber: 80,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -41895,13 +41898,13 @@ function NavigationBar({ onLogout, onSearch }) {
                                     children: "Search"
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 82,
+                                    lineNumber: 88,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                            lineNumber: 73,
+                            lineNumber: 79,
                             columnNumber: 11
                         }, this)
                     ]

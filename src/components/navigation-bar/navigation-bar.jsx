@@ -43,7 +43,7 @@ function NavigationBar({ onLogout, onSearch }) {
           <img
             src={NavbarLogo}
             height="30"
-            className="d-inline-block align-top"
+            className="navbarLogo d-inline-block align-top"
             alt="Marvel Studios Logo"
           />
         </Navbar.Brand>
@@ -55,18 +55,24 @@ function NavigationBar({ onLogout, onSearch }) {
             navbarScroll
           >
             <Nav.Link
+              className="home-link"
               href="https://marvel-flix-app.netlify.app"
               style={{ color: "white" }}
             >
               Home
             </Nav.Link>
             <Nav.Link
+              className="profile-link"
               href="https://marvel-flix-app.netlify.app/profile"
               style={{ color: "white" }}
             >
               Profile
             </Nav.Link>
-            <Nav.Link onClick={handleLogout} style={{ color: "white" }}>
+            <Nav.Link
+              className="logout-link"
+              onClick={handleLogout}
+              style={{ color: "white" }}
+            >
               Log Out
             </Nav.Link>
           </Nav>

@@ -59,3 +59,14 @@ body {
 .signup-label {
   color: #fff;
 }
+
+.navbarLogo:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s ease;
+}
+
+.home-link:hover,
+.profile-link:hover,
+.logout-link:hover {
+  color: #000;
+}
