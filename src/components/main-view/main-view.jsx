@@ -71,17 +71,18 @@ const MainView = () => {
     paddingTop: "70px", // Add padding to avoid content being hidden behind the navbar
   };
 
+  const handleLogout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  };
+
   return (
     <BrowserRouter>
-      <NavigationBar
-        onLogout={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.removeItem("user");
-          localStorage.removeItem("token");
-        }}
-        onSearch={handleSearch}
-      />
+      {user && token && (
+        <NavigationBar onLogout={handleLogout} onSearch={handleSearch} />
+      )}
       <Row className="justify-content-md-center" style={mainContentStyle}>
         <Routes>
           <Route

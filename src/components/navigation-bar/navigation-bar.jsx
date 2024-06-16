@@ -5,13 +5,11 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Import Link from react-router-dom
 import NavbarLogo from "../../assets/img/navbar-logo.jpeg"; // Adjust the path as per your actual folder structure
 
 function NavigationBar({ onLogout, onSearch }) {
   const navigate = useNavigate();
-  const location = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleLogout = () => {
@@ -27,11 +25,6 @@ function NavigationBar({ onLogout, onSearch }) {
     onSearch(searchQuery.trim()); // Pass the trimmed search query to the parent component
   };
 
-  // Check if the current location is the login page or the signup page
-  if (location.pathname === "/login" || location.pathname === "/signup") {
-    return null; // Don't render the NavigationBar component for the login or signup page
-  }
-
   return (
     <Navbar
       fixed="top"
@@ -39,7 +32,7 @@ function NavigationBar({ onLogout, onSearch }) {
       style={{ backgroundColor: "FireBrick", width: "100%" }}
     >
       <Container fluid>
-        <Navbar.Brand href="https://marvel-flix-app.netlify.app/movies">
+        <Navbar.Brand as={Link} to="/movies">
           <img
             src={NavbarLogo}
             height="30"
@@ -54,18 +47,13 @@ function NavigationBar({ onLogout, onSearch }) {
             style={{ maxHeight: "200px" }}
             navbarScroll
           >
-            <Nav.Link
-              className="home-link"
-              href="https://marvel-flix-app.netlify.app"
-              style={{ color: "white" }}
-            >
+            <Nav.Link as={Link} to="/" style={{ color: "white" }}>
               Home
             </Nav.Link>
-            <Nav.Link
-              className="profile-link"
-              href="/profile"
-              style={{ color: "white" }}
-            >
+            <Nav.Link as={Link} to="/movies" style={{ color: "white" }}>
+              Movies
+            </Nav.Link>
+            <Nav.Link as={Link} to="/users/profile" style={{ color: "white" }}>
               Profile
             </Nav.Link>
             <Nav.Link
