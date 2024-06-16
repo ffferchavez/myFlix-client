@@ -84,7 +84,9 @@ Once logged in, you can explore the various features of the application.
 
 ## File Structure
 
-The project's file structure is as follows:```
+The project's file structure is as follows:
+
+```
 marvel-flix/
 ├── public/
 ├── src/
@@ -101,7 +103,8 @@ marvel-flix/
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
-└── README.md```
+└── README.md
+```
 
 ## Code Explanation
 
