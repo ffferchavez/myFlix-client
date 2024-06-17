@@ -13244,4 +13244,14 @@ body {
 .home-link:hover, .profile-link:hover, .logout-link:hover {
   color: #000;
 }
+
+.carousel-c {
+  height: 100%;
+  margin-top: 30px;
+  padding: 30px;
+}
+
+.phase-buttons {
+  margin-top: 20px;
+}
 /*# sourceMappingURL=index.2212206d.css.map */

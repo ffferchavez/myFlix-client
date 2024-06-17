@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button, Container } from "react-bootstrap";
 import NavigationBar from "../navigation-bar/navigation-bar";
 import { MovieCard } from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
+import ControlledCarousel from "../carousel-view/carousel-view";
 
 const MainView = () => {
   const [movies, setMovies] = useState([]);
@@ -17,6 +18,7 @@ const MainView = () => {
   const [token, setToken] = useState(storedToken || null);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPhase, setCurrentPhase] = useState("1"); // Initialize currentPhase to "1"
 
   useEffect(() => {
     if (!token) return;
@@ -49,13 +51,20 @@ const MainView = () => {
             Death: movie.Director.Death,
           },
         }));
+
+        // Set all movies initially
         setMovies(formattedMovies);
-        setFilteredMovies(formattedMovies); // Initially, display all movies
+
+        // Filter movies based on initial phase (Phase 1)
+        const initialFilteredMovies = formattedMovies.filter(
+          (movie) => movie.Phase === currentPhase
+        );
+        setFilteredMovies(initialFilteredMovies);
       })
       .catch((error) => {
         console.error("Error fetching movies:", error);
       });
-  }, [token]);
+  }, [token, currentPhase]); // Add currentPhase to dependency array
 
   const handleSearch = (query) => {
     setSearchQuery(query); // Update searchQuery state
@@ -64,6 +73,14 @@ const MainView = () => {
     const filtered = movies.filter((movie) =>
       movie.Title.toLowerCase().includes(query.toLowerCase())
     );
+    setFilteredMovies(filtered);
+  };
+
+  const handlePhaseChange = (phase) => {
+    setCurrentPhase(phase);
+
+    // Filter movies based on selected phase
+    const filtered = movies.filter((movie) => movie.Phase === phase);
     setFilteredMovies(filtered);
   };
 
@@ -121,19 +138,26 @@ const MainView = () => {
             element={
               !user ? (
                 <Navigate to="/login" replace />
-              ) : filteredMovies.length === 0 ? (
-                <Col>The list is empty!</Col>
               ) : (
-                <>
-                  {filteredMovies.map((movie) => (
-                    <Col className="mb-5 mt-5" key={movie._id} md={3}>
-                      <MovieCard
-                        movie={movie}
-                        onMovieClick={() => setSelectedMovieId(movie._id)}
-                      />
-                    </Col>
-                  ))}
-                </>
+                <div className="d-flex flex-column align-items-center">
+                  <div className="phase-buttons mb-3">
+                    {[...Array(6)].map((_, index) => (
+                      <Button
+                        key={index + 1}
+                        onClick={() => handlePhaseChange(`${index + 1}`)}
+                        className="phase-button mx-2" // Add mx-2 for horizontal space between buttons
+                        variant={currentPhase === `${index + 1}` ? "primary" : "secondary"} // Highlight active phase button
+                      >
+                        Phase {index + 1}
+                      </Button>
+                    ))}
+                  </div>
+                  {filteredMovies.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+                    <ControlledCarousel movies={filteredMovies} />
+                  )}
+                </div>
               )
             }
           />

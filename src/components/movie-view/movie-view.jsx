@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -10,9 +10,37 @@ const MovieView = ({ movies }) => {
   const { movieId } = useParams();
   const movieData = movies.find((mov) => mov._id === movieId);
 
-  if (!movieData) {
-    return <div>Loading...</div>;
-  }
+  const [isFavorite, setIsFavorite] = useState(false); // State to track favorite status
+  const [buttonText, setButtonText] = useState("Add to Favorites");
+  const [buttonVariant, setButtonVariant] = useState("outline-secondary");
+
+  // Check if movie is already in favorites when component mounts
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsFavorite(storedFavorites.includes(movieId));
+  }, [movieId]);
+
+  const toggleFavorites = () => {
+    // Retrieve favorites from localStorage or initialize empty array
+    let storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    
+    // Check if movieId is already in favorites
+    if (storedFavorites.includes(movieId)) {
+      // Remove movieId from favorites
+      storedFavorites = storedFavorites.filter(id => id !== movieId);
+      localStorage.setItem("favorites", JSON.stringify(storedFavorites));
+      setIsFavorite(false); // Update local state
+      setButtonText("Add to Favorites");
+      setButtonVariant("outline-secondary");
+    } else {
+      // Add movieId to favorites
+      storedFavorites.push(movieId);
+      localStorage.setItem("favorites", JSON.stringify(storedFavorites));
+      setIsFavorite(true); // Update local state
+      setButtonText("Added to Favorites");
+      setButtonVariant("primary");
+    }
+  };
 
   function formatDate(string) {
     var options = { year: "numeric", month: "long", day: "numeric" };
@@ -70,6 +98,11 @@ const MovieView = ({ movies }) => {
             src={movieData.ImagePath}
             alt={movieData.Title}
           />
+          <div className="mt-3">
+            <Button variant={buttonVariant} onClick={toggleFavorites}>
+              {buttonText}
+            </Button>
+          </div>
         </Col>
         <Col md={12}>
           <Link to={`/`}>

@@ -53,5 +53,6 @@ MovieCard.propTypes = {
     }).isRequired,
     Featured: PropTypes.bool.isRequired,
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
 };
+
+export default MovieCard;
