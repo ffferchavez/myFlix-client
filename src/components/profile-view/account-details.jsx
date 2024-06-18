@@ -127,13 +127,13 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
                 </p>
                 <div className="d-flex flex-column justify-space-between align-center">
                 <Button
-                  variant="primary"
+                  variant="secondary"
                   className="mb-4"
                   onClick={toggleEditMode}
                 >
                   Edit Information
                 </Button>
-                <Button variant="outline-danger" onClick={handleDeleteAccount}>
+                <Button variant="primary" onClick={handleDeleteAccount}>
                   Delete Account Permanently
                 </Button>
                 </div>
@@ -190,7 +190,7 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
                       Update
                     </Button>
                     <Button
-                      variant="outline-secondary"
+                      variant="secondary"
                       onClick={toggleEditMode}
                     >
                       Cancel

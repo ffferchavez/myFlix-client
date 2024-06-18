@@ -43495,7 +43495,7 @@ const LoginView = ({ onLoggedIn })=>{
         } else setErrors(errors);
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
-        className: "login-c justify-content-center align-items-center",
+        className: "login-c justify-content-center align-items-center mt-2",
         style: {
             minHeight: "100vh"
         },
@@ -43593,7 +43593,7 @@ const LoginView = ({ onLoggedIn })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
-                        className: "d-flex justify-content-between mt-5",
+                        className: "d-flex justify-content-between mt-2",
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "d-flex justify-content-between",
@@ -43750,7 +43750,7 @@ const SignupView = ()=>{
         } else setErrors(errors);
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
-        className: "signup-c justify-content-center align-items-center",
+        className: "signup-c justify-content-center align-items-center mt-2",
         style: {
             minHeight: "100vh"
         },
@@ -44275,7 +44275,7 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                         className: "d-flex flex-column justify-space-between align-center",
                                         children: [
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                                variant: "primary",
+                                                variant: "secondary",
                                                 className: "mb-4",
                                                 onClick: toggleEditMode,
                                                 children: "Edit Information"
@@ -44285,7 +44285,7 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                 columnNumber: 17
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                                variant: "outline-danger",
+                                                variant: "primary",
                                                 onClick: handleDeleteAccount,
                                                 children: "Delete Account Permanently"
                                             }, void 0, false, {
@@ -44438,7 +44438,7 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                     columnNumber: 21
                                                 }, undefined),
                                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                                    variant: "outline-secondary",
+                                                    variant: "secondary",
                                                     onClick: toggleEditMode,
                                                     children: "Cancel"
                                                 }, void 0, false, {

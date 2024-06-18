@@ -100,7 +100,7 @@ export const SignupView = () => {
 
   return (
     <Container
-      className="signup-c justify-content-center align-items-center"
+      className="signup-c justify-content-center align-items-center mt-2"
       style={{ minHeight: "100vh" }}
     >
       <div>
