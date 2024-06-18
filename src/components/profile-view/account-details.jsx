@@ -160,7 +160,7 @@ export const AccountDetails = ({ user, onAccountUpdate }) => {
                     name="password"
                     value={password}
                     onChange={handleUpdate}
-                    minLength="6"
+                    minLength="5"
                     required
                   />
                 </Form.Group>
