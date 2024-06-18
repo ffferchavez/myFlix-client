@@ -29,6 +29,27 @@ body {
   margin-top: 30px;
 }
 
+.home-info {
+  color: #fff;
+  font-size: large;
+  padding: 100px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+
+}
+
+.home-background {
+  display: flex;
+  background-image: url("./assets/img/marvel-bg.jpg");
+  background-size: cover;
+  border-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
 .signup-link {
   text-decoration: none;
 }
@@ -50,6 +71,8 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   padding: 20px;
+  align-items: center;
+  min-height: 100vh; /* Ensure the container takes full viewport height */
 }
 
 .login-label {
@@ -79,4 +102,8 @@ body {
 
 .phase-buttons {
   margin-top: 20px;
+}
+
+.movie-card {
+  margin: 15px 0;
 }

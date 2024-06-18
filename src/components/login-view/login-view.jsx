@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
-import marvelLogo from "../../assets/img/marvel-logo.jpeg"; // Replace with your image path
+import marvelLogo from "../../assets/img/marvel-logo.jpeg";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");

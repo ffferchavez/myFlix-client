@@ -13210,6 +13210,26 @@ body {
   margin-top: 30px;
 }
 
+.home-info {
+  color: #fff;
+  background-color: #0003;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+  font-size: large;
+}
+
+.home-background {
+  background-image: url("marvel-bg.e396b335.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  height: 100vh;
+  display: flex;
+}
+
 .signup-link {
   text-decoration: none;
 }
@@ -13229,6 +13249,8 @@ body {
 .login-c, .signup-c {
   background-color: #00000080;
   border-radius: 10px;
+  align-items: center;
+  min-height: 100vh;
   padding: 20px;
 }
 
@@ -13253,5 +13275,9 @@ body {
 
 .phase-buttons {
   margin-top: 20px;
+}
+
+.movie-card {
+  margin: 15px 0;
 }
 /*# sourceMappingURL=index.2212206d.css.map */

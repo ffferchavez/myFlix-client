@@ -1,8 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Container } from "react-bootstrap";
+import { Container, Alert } from "react-bootstrap";
 import marvelLogo from "../../assets/img/marvel-logo.jpeg";
 
 export const SignupView = () => {
@@ -11,6 +11,7 @@ export const SignupView = () => {
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
   const [errors, setErrors] = useState({});
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
   const navigate = useNavigate();
 
   const validate = () => {
@@ -18,12 +19,14 @@ export const SignupView = () => {
 
     if (!username.trim()) {
       errors.username = "Username is required";
-    } else if (username.length < 3) {
-      errors.username = "Username must be at least 3 characters long";
+    } else if (username.length < 5) {
+      errors.username = "Username must be at least 5 characters long";
     }
 
     if (!password.trim()) {
       errors.password = "Password is required";
+    } else if (password.length < 6) {
+      errors.password = "Password must be at least 6 characters long";
     }
 
     if (!email.trim()) {
@@ -34,9 +37,20 @@ export const SignupView = () => {
 
     if (!birthday.trim()) {
       errors.birthday = "Birthday is required";
+    } else if (!isValidDate(birthday)) {
+      errors.birthday = "Birthday is not valid (yyyy/mm/dd)";
     }
 
     return errors;
+  };
+
+  const isValidDate = (dateString) => {
+    const regEx = /^\d{2}\/\d{2}\/\d{4}$/;
+    if (!dateString.match(regEx)) return false; // Invalid format
+    const d = new Date(dateString);
+    const dNum = d.getTime();
+    if (!dNum && dNum !== 0) return false; // NaN value, invalid date
+    return d.toISOString().slice(0, 10) === dateString;
   };
 
   const handleSubmit = (event) => {
@@ -57,14 +71,28 @@ export const SignupView = () => {
         headers: {
           "Content-Type": "application/json",
         },
-      }).then((response) => {
-        if (response.ok) {
-          alert("Signup successful");
-          window.location.reload();
-        } else {
-          alert("Signup failed");
-        }
-      });
+      })
+        .then((response) => {
+          if (response.ok) {
+            alert("Signup successful");
+            navigate("/login");
+          } else {
+            response.json().then((data) => {
+              setShowErrorAlert(true);
+              setErrors(
+                data.errors.reduce((acc, error) => {
+                  acc[error.param] = error.msg;
+                  return acc;
+                }, {})
+              );
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error signing up:", error);
+          setShowErrorAlert(true);
+          setErrors({ general: "Signup failed. Please try again later." });
+        });
     } else {
       setErrors(errors);
     }
@@ -82,6 +110,20 @@ export const SignupView = () => {
           className="login-logo img-fluid"
         />
       </div>
+      {showErrorAlert && (
+        <Alert
+          variant="danger"
+          onClose={() => setShowErrorAlert(false)}
+          dismissible
+        >
+          <Alert.Heading>Error!</Alert.Heading>
+          <ul>
+            {Object.values(errors).map((error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+        </Alert>
+      )}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formUsername">
           <Form.Label className="signup-label">Username:</Form.Label>
@@ -89,15 +131,13 @@ export const SignupView = () => {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            isInvalid={errors.username}
+            isInvalid={!!errors.username}
             required
-            minLength={3}
+            minLength={5}
           />
-          {errors.username && (
-            <Form.Control.Feedback type="invalid">
-              {errors.username}
-            </Form.Control.Feedback>
-          )}
+          <Form.Control.Feedback type="invalid">
+            {errors.username}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="formPassword">
@@ -106,14 +146,13 @@ export const SignupView = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            isInvalid={errors.password}
+            isInvalid={!!errors.password}
             required
+            minLength={6}
           />
-          {errors.password && (
-            <Form.Control.Feedback type="invalid">
-              {errors.password}
-            </Form.Control.Feedback>
-          )}
+          <Form.Control.Feedback type="invalid">
+            {errors.password}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="formEmail">
@@ -122,31 +161,28 @@ export const SignupView = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            isInvalid={errors.email}
+            isInvalid={!!errors.email}
             required
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
           />
-          {errors.email && (
-            <Form.Control.Feedback type="invalid">
-              {errors.email}
-            </Form.Control.Feedback>
-          )}
+          <Form.Control.Feedback type="invalid">
+            {errors.email}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="formBirthday">
           <Form.Label className="signup-label">Birthday:</Form.Label>
           <Form.Control
-            type="date"
+            type="text"
             value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
-            isInvalid={errors.birthday}
+            isInvalid={!!errors.birthday}
             required
+            placeholder="yyyy/mm/dd"
           />
-          {errors.birthday && (
-            <Form.Control.Feedback type="invalid">
-              {errors.birthday}
-            </Form.Control.Feedback>
-          )}
+          <Form.Control.Feedback type="invalid">
+            {errors.birthday}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Container className="d-flex justify-content-between mt-5">
