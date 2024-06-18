@@ -58,7 +58,7 @@ function NavigationBar({ onLogout, onSearch }) {
       fixed="top"
       expand="lg"
       expanded={expanded}
-      style={{ backgroundColor: "rgba(178, 34, 34, 0.5)", width: "100%" }}
+      style={{ backgroundColor: "rgba(178, 34, 34, 0.5)", width: "100%", paddingTop: "0", paddingBottom: "0" }}
     >
       <Container fluid>
         <Navbar.Brand as={Link} to="/" onClick={() => setExpanded(false)}>

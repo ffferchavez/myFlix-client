@@ -140,7 +140,7 @@ const MainView = () => {
           <Route
             path="/"
             element={
-              <div className="home-background">
+              <div className="home-background mb-4">
                 <Container className="home-info">
                   <Row className="justify-content-center align-items-center text-center">
                     <Col md={12}>
@@ -172,7 +172,7 @@ const MainView = () => {
               !user ? (
                 <Navigate to="/login" replace />
               ) : (
-                <Container>
+                <Container className="mb-5">
                   <Row>
                     {sortedMovies.length === 0 ? (
                       <Col>The list is empty!</Col>
@@ -213,7 +213,7 @@ const MainView = () => {
                       </Button>
                     ))}
                   </div>
-                  <Container>
+                  <Container className="mb-5">
                     <Row>
                       {filteredMovies.length === 0 ? (
                         <Col>The list is empty!</Col>
