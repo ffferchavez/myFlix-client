@@ -44325,7 +44325,7 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                 name: "username",
                                                 value: username,
                                                 onChange: handleUpdate,
-                                                minLength: "8",
+                                                minLength: "5",
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
@@ -44354,7 +44354,7 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                 name: "password",
                                                 value: password,
                                                 onChange: handleUpdate,
-                                                minLength: "10",
+                                                minLength: "5",
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
