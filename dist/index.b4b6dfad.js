@@ -43495,7 +43495,7 @@ const LoginView = ({ onLoggedIn })=>{
         } else setErrors(errors);
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
-        className: "login-c justify-content-center align-items-center",
+        className: "login-c justify-content-center align-items-center mt-2",
         style: {
             minHeight: "100vh"
         },
@@ -43593,7 +43593,7 @@ const LoginView = ({ onLoggedIn })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
-                        className: "d-flex justify-content-between mt-5",
+                        className: "d-flex justify-content-between mt-2",
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "d-flex justify-content-between",
@@ -43750,7 +43750,7 @@ const SignupView = ()=>{
         } else setErrors(errors);
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
-        className: "signup-c justify-content-center align-items-center",
+        className: "signup-c justify-content-center align-items-center mt-2",
         style: {
             minHeight: "100vh"
         },
@@ -44271,23 +44271,32 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                         lineNumber: 125,
                                         columnNumber: 17
                                     }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                        variant: "primary",
-                                        className: "me-2",
-                                        onClick: toggleEditMode,
-                                        children: "Edit Information"
-                                    }, void 0, false, {
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "d-flex flex-column justify-space-between align-center",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                                variant: "secondary",
+                                                className: "mb-4",
+                                                onClick: toggleEditMode,
+                                                children: "Edit Information"
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/account-details.jsx",
+                                                lineNumber: 129,
+                                                columnNumber: 17
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                                variant: "primary",
+                                                onClick: handleDeleteAccount,
+                                                children: "Delete Account Permanently"
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/account-details.jsx",
+                                                lineNumber: 136,
+                                                columnNumber: 17
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "src/components/profile-view/account-details.jsx",
                                         lineNumber: 128,
-                                        columnNumber: 17
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                        variant: "outline-danger",
-                                        onClick: handleDeleteAccount,
-                                        children: "Delete Account Permanently"
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/account-details.jsx",
-                                        lineNumber: 135,
                                         columnNumber: 17
                                     }, undefined)
                                 ]
@@ -44308,7 +44317,7 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                 children: "Username:"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
-                                                lineNumber: 144,
+                                                lineNumber: 146,
                                                 columnNumber: 19
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -44320,13 +44329,13 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
-                                                lineNumber: 145,
+                                                lineNumber: 147,
                                                 columnNumber: 19
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/account-details.jsx",
-                                        lineNumber: 143,
+                                        lineNumber: 145,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -44337,7 +44346,7 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                 children: "Password:"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
-                                                lineNumber: 155,
+                                                lineNumber: 157,
                                                 columnNumber: 19
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -44349,13 +44358,13 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
-                                                lineNumber: 156,
+                                                lineNumber: 158,
                                                 columnNumber: 19
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/account-details.jsx",
-                                        lineNumber: 154,
+                                        lineNumber: 156,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -44366,7 +44375,7 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                 children: "Email:"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
-                                                lineNumber: 166,
+                                                lineNumber: 168,
                                                 columnNumber: 19
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -44377,13 +44386,13 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
-                                                lineNumber: 167,
+                                                lineNumber: 169,
                                                 columnNumber: 19
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/account-details.jsx",
-                                        lineNumber: 165,
+                                        lineNumber: 167,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -44394,7 +44403,7 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                 children: "Birthdate:"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
-                                                lineNumber: 176,
+                                                lineNumber: 178,
                                                 columnNumber: 19
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -44405,13 +44414,13 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/account-details.jsx",
-                                                lineNumber: 177,
+                                                lineNumber: 179,
                                                 columnNumber: 19
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/account-details.jsx",
-                                        lineNumber: 175,
+                                        lineNumber: 177,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -44425,33 +44434,33 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                                     children: "Update"
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/account-details.jsx",
-                                                    lineNumber: 187,
+                                                    lineNumber: 189,
                                                     columnNumber: 21
                                                 }, undefined),
                                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                                    variant: "outline-secondary",
+                                                    variant: "secondary",
                                                     onClick: toggleEditMode,
                                                     children: "Cancel"
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/account-details.jsx",
-                                                    lineNumber: 190,
+                                                    lineNumber: 192,
                                                     columnNumber: 21
                                                 }, undefined)
                                             ]
                                         }, void 0, true, {
                                             fileName: "src/components/profile-view/account-details.jsx",
-                                            lineNumber: 186,
+                                            lineNumber: 188,
                                             columnNumber: 19
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/account-details.jsx",
-                                        lineNumber: 185,
+                                        lineNumber: 187,
                                         columnNumber: 17
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/account-details.jsx",
-                                lineNumber: 142,
+                                lineNumber: 144,
                                 columnNumber: 15
                             }, undefined)
                         ]
@@ -44480,19 +44489,19 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                             children: "Confirm Account Deletion"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/account-details.jsx",
-                            lineNumber: 206,
+                            lineNumber: 208,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/account-details.jsx",
-                        lineNumber: 205,
+                        lineNumber: 207,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _modalDefault.default).Body, {
                         children: "Are you sure you want to delete your account permanently? This action cannot be undone."
                     }, void 0, false, {
                         fileName: "src/components/profile-view/account-details.jsx",
-                        lineNumber: 208,
+                        lineNumber: 210,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _modalDefault.default).Footer, {
@@ -44503,7 +44512,7 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                 children: "Cancel"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/account-details.jsx",
-                                lineNumber: 213,
+                                lineNumber: 215,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -44512,19 +44521,19 @@ const AccountDetails = ({ user, onAccountUpdate })=>{
                                 children: "Delete"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/account-details.jsx",
-                                lineNumber: 216,
+                                lineNumber: 218,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/account-details.jsx",
-                        lineNumber: 212,
+                        lineNumber: 214,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/account-details.jsx",
-                lineNumber: 204,
+                lineNumber: 206,
                 columnNumber: 7
             }, undefined)
         ]

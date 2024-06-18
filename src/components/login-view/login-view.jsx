@@ -65,7 +65,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
   return (
     <Container
-      className="login-c justify-content-center align-items-center"
+      className="login-c justify-content-center align-items-center mt-2"
       style={{ minHeight: "100vh" }}
     >
       <div>
@@ -109,7 +109,7 @@ export const LoginView = ({ onLoggedIn }) => {
           )}
         </Form.Group>
 
-        <Container className="d-flex justify-content-between mt-5">
+        <Container className="d-flex justify-content-between mt-2">
           <div className="d-flex justify-content-between">
             <Button variant="primary" type="submit">
               Login
