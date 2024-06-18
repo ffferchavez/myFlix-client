@@ -258,7 +258,7 @@ const MainView = () => {
                   user={user}
                   movies={movies} // Pass movies array
                   onAccountUpdate={(updatedUser) => setUser(updatedUser)}
-                  onFavouritesUpdate={(updatedUser) => setUser(updatedUser)}
+                  onFavoritesUpdate={(updatedUser) => setUser(updatedUser)}
                 />
               )
             }

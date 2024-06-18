@@ -4,26 +4,26 @@ import { MovieCard } from "../movie-card/movie-card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-export const FavouriteMovies = ({
-  favouriteMovieList,
+export const FavoriteMovies = ({
+  favoriteMovieList,
   user,
-  onFavouritesUpdate,
+  onFavoritesUpdate,
 }) => {
   return (
     <>
       <div className="favMovies">
         <Row>
           <Col>
-            <h2>Favourite Movies</h2>
+            <h2>Favorite Movies</h2>
           </Col>
         </Row>
         <Row>
-          {favouriteMovieList.map((movie) => (
+          {favoriteMovieList.map((movie) => (
             <Col key={movie._id} xs={12} sm={6} md={4} lg={3} className="mb-4">
               <MovieCard
                 movieData={movie}
                 user={user}
-                onFavouritesUpdate={onFavouritesUpdate}
+                onFavoritesUpdate={onFavoritesUpdate}
                 key={movie._id}
               />
             </Col>
@@ -34,8 +34,8 @@ export const FavouriteMovies = ({
   );
 };
 
-FavouriteMovies.propTypes = {
-  favouriteMovieList: PropTypes.arrayOf(
+FavoriteMovies.propTypes = {
+  favoriteMovieList: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
       Title: PropTypes.string.isRequired,
@@ -59,7 +59,7 @@ FavouriteMovies.propTypes = {
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,
-    FavouriteMovies: PropTypes.arrayOf(PropTypes.string),
+    FavoriteMovies: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
-  onFavouritesUpdate: PropTypes.func.isRequired,
+  onFavoritesUpdate: PropTypes.func.isRequired,
 };
