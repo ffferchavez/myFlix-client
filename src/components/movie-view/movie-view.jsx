@@ -105,7 +105,7 @@ const MovieView = ({ movies }) => {
           </div>
         </Col>
         <Col md={12}>
-          <Link to={`/`}>
+          <Link to={`/movies`}>
             <Button variant="primary">Back</Button>
           </Link>
         </Col>

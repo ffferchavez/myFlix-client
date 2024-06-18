@@ -1,38 +1,67 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import { useNavigate, Link } from "react-router-dom"; // Import Link from react-router-dom
-import NavbarLogo from "../../assets/img/navbar-logo.jpeg"; // Adjust the path as per your actual folder structure
+import { useNavigate, Link } from "react-router-dom";
+import NavbarLogo from "../../assets/img/navbar-logo.jpeg";
 
 function NavigationBar({ onLogout, onSearch }) {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const [expanded, setExpanded] = useState(false);
+  const navbarRef = useRef(null);
 
   const handleLogout = () => {
-    // Call the onLogout function passed from the MainView component
     onLogout();
-
-    // Navigate to the login page
     navigate("/login");
+  };
+
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    onSearch(query); // Trigger search function passed from MainView
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(searchQuery.trim()); // Pass the trimmed search query to the parent component
+    onSearch(searchQuery.trim());
   };
+
+  const handleClickOutside = (e) => {
+    if (navbarRef.current && !navbarRef.current.contains(e.target)) {
+      setExpanded(false);
+    }
+  };
+
+  const handleNavbarToggle = () => {
+    setExpanded(!expanded);
+  };
+
+  const handleNavItemClick = () => {
+    setExpanded(false); // Collapse Navbar when a Nav.Link is clicked
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <Navbar
+      ref={navbarRef}
       fixed="top"
       expand="lg"
-      style={{ backgroundColor: "FireBrick", width: "100%" }}
+      expanded={expanded}
+      style={{ backgroundColor: "rgba(178, 34, 34, 0.5)", width: "100%" }}
     >
       <Container fluid>
-        <Navbar.Brand as={Link} to="/movies">
+        <Navbar.Brand as={Link} to="/" onClick={() => setExpanded(false)}>
           <img
             src={NavbarLogo}
             height="30"
@@ -40,27 +69,25 @@ function NavigationBar({ onLogout, onSearch }) {
             alt="Marvel Studios Logo"
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Toggle
+          aria-controls="navbarScroll"
+          onClick={handleNavbarToggle}
+        />
         <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "200px" }}
-            navbarScroll
-          >
-            <Nav.Link as={Link} to="/" style={{ color: "white" }}>
+          <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "200px" }} navbarScroll>
+            <Nav.Link as={Link} to="/" style={{ color: "white" }} onClick={handleNavItemClick}>
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/movies" style={{ color: "white" }}>
+            <Nav.Link as={Link} to="/movies" style={{ color: "white" }} onClick={handleNavItemClick}>
               Movies
             </Nav.Link>
-            <Nav.Link as={Link} to="/users/profile" style={{ color: "white" }}>
+            <Nav.Link as={Link} to="/carousel" style={{ color: "white" }} onClick={handleNavItemClick}>
+              Phases
+            </Nav.Link>
+            <Nav.Link as={Link} to="/users/profile" style={{ color: "white" }} onClick={handleNavItemClick}>
               Profile
             </Nav.Link>
-            <Nav.Link
-              className="logout-link"
-              onClick={handleLogout}
-              style={{ color: "white" }}
-            >
+            <Nav.Link className="logout-link" onClick={handleLogout} style={{ color: "white" }}>
               Log Out
             </Nav.Link>
           </Nav>
@@ -71,7 +98,7 @@ function NavigationBar({ onLogout, onSearch }) {
               className="me-2"
               aria-label="Search"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleSearchChange} // Update search query on change
             />
             <Button variant="outline-light" type="submit">
               Search

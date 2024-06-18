@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../../index.scss";
 
 export const MovieCard = ({ movie }) => {
   return (
     <Link
-      className="mt-5 w-100 h-100 btn-card"
+      className="mt-5 w-100 h-100 btn-card movie-card"
       to={`/movies/${movie._id}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
@@ -55,4 +56,4 @@ MovieCard.propTypes = {
   }).isRequired,
 };
 
-export default MovieCard;
+export default MovieCard
