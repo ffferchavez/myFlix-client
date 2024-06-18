@@ -27689,7 +27689,7 @@ const MainView = ()=>{
                                 user: user,
                                 movies: movies,
                                 onAccountUpdate: (updatedUser)=>setUser(updatedUser),
-                                onFavouritesUpdate: (updatedUser)=>setUser(updatedUser)
+                                onFavoritesUpdate: (updatedUser)=>setUser(updatedUser)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
                                 lineNumber: 257,
@@ -44031,15 +44031,15 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ProfileView", ()=>ProfileView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _accountDetails = require("./account-details");
-var _favouriteMovies = require("./favourite-movies");
+var _favoriteMovies = require("./favorite-movies");
 var _container = require("react-bootstrap/Container");
 var _containerDefault = parcelHelpers.interopDefault(_container);
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
 var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
-const ProfileView = ({ user, movies = [], onAccountUpdate, onFavouritesUpdate })=>{
-    const favouriteMovieList = movies && user.FavouriteMovies ? movies.filter((m)=>user.FavouriteMovies.includes(m._id)) : [];
+const ProfileView = ({ user, movies = [], onAccountUpdate, onFavoritesUpdate })=>{
+    const favoriteMovieList = movies && user.FavoriteMovies ? movies.filter((m)=>user.FavoriteMovies.includes(m.movieId)) : [];
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _containerDefault.default), {
         className: "d-flex justify-content-center align-items-center",
         style: {
@@ -44059,10 +44059,10 @@ const ProfileView = ({ user, movies = [], onAccountUpdate, onFavouritesUpdate })
                         lineNumber: 25,
                         columnNumber: 11
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favouriteMovies.FavouriteMovies), {
-                        favouriteMovieList: favouriteMovieList,
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMovies.FavoriteMovies), {
+                        favoriteMovieList: favoriteMovieList,
                         user: user,
-                        onFavouritesUpdate: onFavouritesUpdate
+                        onFavoritesUpdate: onFavoritesUpdate
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
                         lineNumber: 26,
@@ -44094,7 +44094,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","./account-details":"4TvHV","./favourite-movies":"9FAJ6","react-bootstrap/Container":"hEdsw","react-bootstrap/Col":"2L2I6","react-bootstrap/Row":"cMC39","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"4TvHV":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","./account-details":"4TvHV","./favorite-movies":"dTTQH","react-bootstrap/Container":"hEdsw","react-bootstrap/Col":"2L2I6","react-bootstrap/Row":"cMC39","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"4TvHV":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9677 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -44559,16 +44559,16 @@ $RefreshReg$(_c, "AccountDetails");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-bootstrap/Container":"hEdsw","react-bootstrap/Modal":"aNVmp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9FAJ6":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$7fc5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-bootstrap/Container":"hEdsw","react-bootstrap/Modal":"aNVmp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"dTTQH":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$8767 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$7fc5.prelude(module);
+$parcel$ReactRefreshHelpers$8767.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "FavouriteMovies", ()=>FavouriteMovies);
+parcelHelpers.export(exports, "FavoriteMovies", ()=>FavoriteMovies);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
@@ -44579,7 +44579,7 @@ var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
-const FavouriteMovies = ({ favouriteMovieList, user, onFavouritesUpdate })=>{
+const FavoriteMovies = ({ favoriteMovieList, user, onFavoritesUpdate })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "favMovies",
@@ -44587,24 +44587,24 @@ const FavouriteMovies = ({ favouriteMovieList, user, onFavouritesUpdate })=>{
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                            children: "Favourite Movies"
+                            children: "Favorite Movies"
                         }, void 0, false, {
-                            fileName: "src/components/profile-view/favourite-movies.jsx",
+                            fileName: "src/components/profile-view/favorite-movies.jsx",
                             lineNumber: 17,
                             columnNumber: 13
                         }, undefined)
                     }, void 0, false, {
-                        fileName: "src/components/profile-view/favourite-movies.jsx",
+                        fileName: "src/components/profile-view/favorite-movies.jsx",
                         lineNumber: 16,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
-                    fileName: "src/components/profile-view/favourite-movies.jsx",
+                    fileName: "src/components/profile-view/favorite-movies.jsx",
                     lineNumber: 15,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                    children: favouriteMovieList.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                    children: favoriteMovieList.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                             xs: 12,
                             sm: 6,
                             md: 4,
@@ -44613,33 +44613,33 @@ const FavouriteMovies = ({ favouriteMovieList, user, onFavouritesUpdate })=>{
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                 movieData: movie,
                                 user: user,
-                                onFavouritesUpdate: onFavouritesUpdate
+                                onFavoritesUpdate: onFavoritesUpdate
                             }, movie._id, false, {
-                                fileName: "src/components/profile-view/favourite-movies.jsx",
+                                fileName: "src/components/profile-view/favorite-movies.jsx",
                                 lineNumber: 23,
                                 columnNumber: 15
                             }, undefined)
                         }, movie._id, false, {
-                            fileName: "src/components/profile-view/favourite-movies.jsx",
+                            fileName: "src/components/profile-view/favorite-movies.jsx",
                             lineNumber: 22,
                             columnNumber: 13
                         }, undefined))
                 }, void 0, false, {
-                    fileName: "src/components/profile-view/favourite-movies.jsx",
+                    fileName: "src/components/profile-view/favorite-movies.jsx",
                     lineNumber: 20,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
-            fileName: "src/components/profile-view/favourite-movies.jsx",
+            fileName: "src/components/profile-view/favorite-movies.jsx",
             lineNumber: 14,
             columnNumber: 7
         }, undefined)
     }, void 0, false);
 };
-_c = FavouriteMovies;
-FavouriteMovies.propTypes = {
-    favouriteMovieList: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).shape({
+_c = FavoriteMovies;
+FavoriteMovies.propTypes = {
+    favoriteMovieList: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).shape({
         _id: (0, _propTypesDefault.default).string.isRequired,
         Title: (0, _propTypesDefault.default).string.isRequired,
         Description: (0, _propTypesDefault.default).string.isRequired,
@@ -44661,14 +44661,14 @@ FavouriteMovies.propTypes = {
         Username: (0, _propTypesDefault.default).string.isRequired,
         Password: (0, _propTypesDefault.default).string.isRequired,
         Email: (0, _propTypesDefault.default).string.isRequired,
-        FavouriteMovies: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).string)
+        FavoriteMovies: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).string)
     }).isRequired,
-    onFavouritesUpdate: (0, _propTypesDefault.default).func.isRequired
+    onFavoritesUpdate: (0, _propTypesDefault.default).func.isRequired
 };
 var _c;
-$RefreshReg$(_c, "FavouriteMovies");
+$RefreshReg$(_c, "FavoriteMovies");
 
-  $parcel$ReactRefreshHelpers$7fc5.postlude(module);
+  $parcel$ReactRefreshHelpers$8767.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
