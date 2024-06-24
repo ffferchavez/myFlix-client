@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
-import { Row, Col, Button, Container } from "react-bootstrap";
+import { Row, Col, Button, Container, Form } from "react-bootstrap";
 import NavigationBar from "../navigation-bar/navigation-bar";
 import { MovieCard } from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
@@ -12,14 +12,14 @@ import "../../index.scss"; // Import the new CSS file
 
 const MainView = () => {
   const [movies, setMovies] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser || null);
   const [token, setToken] = useState(storedToken || null);
-  const [selectedMovieId, setSelectedMovieId] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([]);
   const [currentPhase, setCurrentPhase] = useState("1"); // Initialize currentPhase to "1"
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     if (!token) return;
@@ -61,21 +61,12 @@ const MainView = () => {
           (movie) => movie.Phase === currentPhase
         );
         setFilteredMovies(initialFilteredMovies);
+        setSearchResults(initialFilteredMovies); // Set search results initially to all movies
       })
       .catch((error) => {
         console.error("Error fetching movies:", error);
       });
   }, [token, currentPhase]); // Add currentPhase to dependency array
-
-  const handleSearch = (query) => {
-    setSearchQuery(query); // Update searchQuery state
-
-    // Filter movies based on search query
-    const filtered = movies.filter((movie) =>
-      movie.Title.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredMovies(filtered);
-  };
 
   const handlePhaseChange = (phase) => {
     setCurrentPhase(phase);
@@ -83,6 +74,17 @@ const MainView = () => {
     // Filter movies based on selected phase
     const filtered = movies.filter((movie) => movie.Phase === phase);
     setFilteredMovies(filtered);
+    setSearchResults(filtered); // Update search results when phase changes
+  };
+
+  const handleSearchChange = (searchTerm) => {
+    setSearchTerm(searchTerm);
+
+    // Filter movies based on search term
+    const results = movies.filter((movie) =>
+      movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredMovies(results);
   };
 
   const mainContentStyle = {
@@ -102,11 +104,11 @@ const MainView = () => {
   return (
     <BrowserRouter>
       {user && token && (
-        <NavigationBar onLogout={handleLogout} onSearch={handleSearch} /> // Pass handleSearch function to NavigationBar
+        <NavigationBar onLogout={handleLogout} onSearch={handleSearchChange} /> // Pass onSearch prop
       )}
       <Row className="justify-content-md-center" style={mainContentStyle}>
         <Routes>
-          <Route
+        <Route
             path="/signup"
             element={
               user ? (
@@ -167,33 +169,45 @@ const MainView = () => {
             }
           />
           <Route
-            path="/movies"
-            element={
-              !user ? (
-                <Navigate to="/login" replace />
-              ) : (
-                <Container className="mb-5">
-                  <Row>
-                    {sortedMovies.length === 0 ? (
-                      <Col>The list is empty!</Col>
-                    ) : (
-                      sortedMovies.map((movie) => (
-                        <Col
-                          key={movie._id}
-                          xs={12}
-                          sm={6}
-                          md={4}
-                          className="d-flex justify-content-center mb-4"
-                        >
-                          <MovieCard movie={movie} />
-                        </Col>
-                      ))
-                    )}
-                  </Row>
-                </Container>
-              )
-            }
-          />
+          path="/movies"
+          element={
+            !user ? (
+              <Navigate to="/login" replace />
+            ) : (
+              <Container className="mb-5">
+                <Row>
+                  {searchResults.length > 0 ? (
+                    searchResults.map((movie) => (
+                      <Col
+                        key={movie._id}
+                        xs={12}
+                        sm={6}
+                        md={4}
+                        className="d-flex justify-content-center mb-4"
+                      >
+                        <MovieCard movie={movie} />
+                      </Col>
+                    ))
+                  ) : filteredMovies.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+                    filteredMovies.map((movie) => (
+                      <Col
+                        key={movie._id}
+                        xs={12}
+                        sm={6}
+                        md={4}
+                        className="d-flex justify-content-center mb-4"
+                      >
+                        <MovieCard movie={movie} />
+                      </Col>
+                    ))
+                  )}
+                </Row>
+              </Container>
+            )
+          }
+        />
           <Route
             path="/carousel"
             element={
@@ -201,6 +215,7 @@ const MainView = () => {
                 <Navigate to="/login" replace />
               ) : (
                 <div className="d-flex flex-column align-items-center">
+                  <h1 style={{ color: "white" }} className="my-4">Movies filtered by Marvel Phases</h1>
                   <div className="phase-buttons mb-3">
                     {[...Array(6)].map((_, index) => (
                       <Button

@@ -13280,4 +13280,8 @@ body {
 .movie-card {
   margin: 15px 0;
 }
+
+.custom-card {
+  border: none !important;
+}
 /*# sourceMappingURL=index.2212206d.css.map */
