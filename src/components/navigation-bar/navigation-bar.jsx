@@ -3,32 +3,19 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import { useNavigate, Link } from "react-router-dom";
 import NavbarLogo from "../../assets/img/navbar-logo.jpeg";
 
 function NavigationBar({ onLogout, onSearch }) {
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState("");
   const [expanded, setExpanded] = useState(false);
   const navbarRef = useRef(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleLogout = () => {
     onLogout();
     navigate("/login");
-  };
-
-  // Handle search input change
-  const handleSearchChange = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-    onSearch(query); // Trigger search function passed from MainView
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch(searchQuery.trim());
   };
 
   const handleClickOutside = (e) => {
@@ -44,6 +31,12 @@ function NavigationBar({ onLogout, onSearch }) {
   const handleNavItemClick = () => {
     setExpanded(false); // Collapse Navbar when a Nav.Link is clicked
   };
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value; // Ensure e.target is defined before accessing value
+    setSearchTerm(value);
+    onSearch(value); // Pass search term to parent component
+  };  
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -91,18 +84,14 @@ function NavigationBar({ onLogout, onSearch }) {
               Log Out
             </Nav.Link>
           </Nav>
-          <Form className="d-flex" onSubmit={handleSubmit}>
-            <FormControl
-              type="search"
-              placeholder="Search by movie name"
-              className="me-2"
-              aria-label="Search"
-              value={searchQuery}
-              onChange={handleSearchChange} // Update search query on change
+          <Form className="d-flex">
+            <Form.Control
+              type="text"
+              placeholder="Search your movie..."
+              className="mr-2"
+              value={searchTerm}
+              onChange={handleSearchChange}
             />
-            <Button variant="outline-light" type="submit">
-              Search
-            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>

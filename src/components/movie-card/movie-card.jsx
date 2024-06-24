@@ -10,7 +10,7 @@ export const MovieCard = ({ movie }) => {
       to={`/movies/${movie._id}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
-      <Card className="h-100 w-100" style={{ cursor: "pointer" }}>
+      <Card className="h-100 w-100 custom-card" style={{ cursor: "pointer" }}>
         <Card.Img
           variant="top"
           src={movie.ImagePath}
