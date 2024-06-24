@@ -176,8 +176,8 @@ const MainView = () => {
             ) : (
               <Container className="mb-5">
                 <Row>
-                  {searchResults.length > 0 ? (
-                    searchResults.map((movie) => (
+                  {sortedMovies.length > 0 ? (
+                    sortedMovies.map((movie) => (
                       <Col
                         key={movie._id}
                         xs={12}
