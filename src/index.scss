@@ -1,11 +1,7 @@
 $primary: FireBrick;
-$body-bg: Snow;
+$body-bg: snow;
 
 @import "~bootstrap/scss/bootstrap.scss";
-
-/*.my-flix {
-  color: $color;
-}*/
 
 body {
   background-image: url("./assets/img/red-bg.svg");
@@ -37,7 +33,6 @@ body {
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.2);
-
 }
 
 .home-background {
@@ -72,7 +67,7 @@ body {
   border-radius: 10px;
   padding: 20px;
   align-items: center;
-  min-height: 100vh; /* Ensure the container takes full viewport height */
+  min-height: 100vh;
 }
 
 .login-label {
@@ -98,24 +93,71 @@ body {
   padding: 30px;
   margin-top: 30px;
   height: 100%;
-}
 
-.phase-buttons {
-  margin-top: 20px;
+  .carousel-control-prev,
+  .carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .carousel-control-prev {
+    left: -40px;
+  }
+
+  .carousel-control-next {
+    right: -40px;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 .movie-card {
-  margin: 15px 0;
+  .custom-card {
+    border: none !important;
+    .card-img-top {
+      height: 600px;
+      object-fit: cover;
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
 
-.custom-card {
-  border: none !important;
+.movie-card:hover {
+  transform: scale(1.01);
+  transition: transform 0.25s ease-in-out;
 }
 
 .nav-link {
   font-size: 14px;
+  position: relative;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  transition: color 0.5s ease;
 }
 
-.nav-link:hover {
-  text-decoration: underline;
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: white;
+  transition: width 0.5s ease, right 0.5s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  right: 0;
 }

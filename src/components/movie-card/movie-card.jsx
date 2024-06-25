@@ -10,25 +10,15 @@ export const MovieCard = ({ movie }) => {
       to={`/movies/${movie._id}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
-      <Card className="h-100 w-100 custom-card" style={{ cursor: "pointer" }}>
+      <Card className="h-100 w-100 custom-card">
         <Card.Img
           variant="top"
           src={movie.ImagePath}
           alt={movie.Title}
-          style={{ objectFit: "cover", height: "400px" }}
+          className="card-img-top"
         />
-        <Card.Body className="d-flex flex-column justify-content-between">
-          <div>
-            <Card.Title>{movie.Title}</Card.Title>
-          </div>
-          <div className="text-center mt-3">
-            <Link
-              to={`/movies/${movie._id}`}
-              style={{ textDecoration: "none" }}
-            >
-              <Button className="checkme btn">Check Me Out!</Button>
-            </Link>
-          </div>
+        <Card.Body className="text-center">
+          <Card.Title>{movie.Title}</Card.Title>
         </Card.Body>
       </Card>
     </Link>
@@ -56,4 +46,4 @@ MovieCard.propTypes = {
   }).isRequired,
 };
 
-export default MovieCard
+export default MovieCard;
