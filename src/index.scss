@@ -136,3 +136,27 @@ body {
   width: 100%;
   right: 0;
 }
+
+.carousel-c {
+  position: relative;
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .carousel-control-prev {
+    left: -40px;
+  }
+
+  .carousel-control-next {
+    right: -40px;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 80px;
+    height: 80px;
+  }
+}

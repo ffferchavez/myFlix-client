@@ -8,7 +8,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import ControlledCarousel from "../carousel-view/carousel-view";
-import "../../index.scss"; // Import the new CSS file
+import "../../index.scss";
 
 const MainView = () => {
   const [movies, setMovies] = useState([]);
@@ -108,7 +108,7 @@ const MainView = () => {
       )}
       <Row className="justify-content-md-center" style={mainContentStyle}>
         <Routes>
-        <Route
+          <Route
             path="/signup"
             element={
               user ? (
@@ -147,20 +147,38 @@ const MainView = () => {
                   <Row className="justify-content-center align-items-center text-center">
                     <Col md={12}>
                       <h1 className="mb-4">Welcome to Marvel Flix</h1>
-                      <h2 className="mb-4">Explore the Marvel Cinematic Universe</h2>
+                      <h2 className="mb-4">
+                        Explore the Marvel Cinematic Universe
+                      </h2>
                       <p className="mb-4">
-                        Marvel-Flix is a web application that allows users to browse and view information about movies in the Marvel Cinematic Universe. You can explore a list of Marvel movies with detailed information about each movie, including its title, description, genre, director, and more.
+                        Marvel-Flix is a web application that allows users to
+                        browse and view information about movies in the Marvel
+                        Cinematic Universe. You can explore a list of Marvel
+                        movies with detailed information about each movie,
+                        including its title, description, genre, director, and
+                        more.
                       </p>
                       <p className="mb-4">
-                        The application provides features such as searching for movies by title, viewing detailed information about a specific movie, user authentication and authorization, and the ability for users to mark movies as their favorites and view their favorite movies on their profile page.
+                        The application provides features such as searching for
+                        movies by title, viewing detailed information about a
+                        specific movie, user authentication and authorization,
+                        and the ability for users to mark movies as their
+                        favorites and view their favorite movies on their
+                        profile page.
                       </p>
                       <p className="mb-4">
-                        Get started by exploring our collection of movies and dive into the world of Marvel superheroes and stories.
+                        Get started by exploring our collection of movies and
+                        dive into the world of Marvel superheroes and stories.
                       </p>
                     </Col>
                     <Col md={6} className="text-center">
                       <Button variant="secondary">
-                        <Link to="/movies" style={{ textDecoration: 'none', color: 'white' }}>Go to Movies</Link>
+                        <Link
+                          to="/movies"
+                          style={{ textDecoration: "none", color: "white" }}
+                        >
+                          Go to Movies
+                        </Link>
                       </Button>
                     </Col>
                   </Row>
@@ -169,45 +187,45 @@ const MainView = () => {
             }
           />
           <Route
-          path="/movies"
-          element={
-            !user ? (
-              <Navigate to="/login" replace />
-            ) : (
-              <Container className="mb-5">
-                <Row>
-                  {sortedMovies.length > 0 ? (
-                    sortedMovies.map((movie) => (
-                      <Col
-                        key={movie._id}
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        className="d-flex justify-content-center mb-4"
-                      >
-                        <MovieCard movie={movie} />
-                      </Col>
-                    ))
-                  ) : filteredMovies.length === 0 ? (
-                    <Col>The list is empty!</Col>
-                  ) : (
-                    filteredMovies.map((movie) => (
-                      <Col
-                        key={movie._id}
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        className="d-flex justify-content-center mb-4"
-                      >
-                        <MovieCard movie={movie} />
-                      </Col>
-                    ))
-                  )}
-                </Row>
-              </Container>
-            )
-          }
-        />
+            path="/movies"
+            element={
+              !user ? (
+                <Navigate to="/login" replace />
+              ) : (
+                <Container className="mb-5">
+                  <Row>
+                    {sortedMovies.length > 0 ? (
+                      sortedMovies.map((movie) => (
+                        <Col
+                          key={movie._id}
+                          xs={12}
+                          sm={6}
+                          md={4}
+                          className="d-flex justify-content-center mb-4"
+                        >
+                          <MovieCard movie={movie} />
+                        </Col>
+                      ))
+                    ) : filteredMovies.length === 0 ? (
+                      <Col>The list is empty!</Col>
+                    ) : (
+                      filteredMovies.map((movie) => (
+                        <Col
+                          key={movie._id}
+                          xs={12}
+                          sm={6}
+                          md={4}
+                          className="d-flex justify-content-center mb-4"
+                        >
+                          <MovieCard movie={movie} />
+                        </Col>
+                      ))
+                    )}
+                  </Row>
+                </Container>
+              )
+            }
+          />
           <Route
             path="/carousel"
             element={
@@ -215,38 +233,26 @@ const MainView = () => {
                 <Navigate to="/login" replace />
               ) : (
                 <div className="d-flex flex-column align-items-center">
-                  <h1 style={{ color: "white" }} className="my-4">Movies filtered by Marvel Phases</h1>
-                  <div className="phase-buttons mb-3">
+                  <h1 style={{ color: "white" }}>
+                    Movies filtered by Marvel Phases
+                  </h1>
+                  <div className="phase-buttons">
                     {[...Array(6)].map((_, index) => (
                       <Button
                         key={index + 1}
                         onClick={() => handlePhaseChange(`${index + 1}`)}
-                        className="phase-button mx-2" // Add mx-2 for horizontal space between buttons
-                        variant={currentPhase === `${index + 1}` ? "primary" : "secondary"} // Highlight active phase button
+                        className="phase-button mx-2"
+                        variant={
+                          currentPhase === `${index + 1}`
+                            ? "primary"
+                            : "secondary"
+                        }
                       >
                         Phase {index + 1}
                       </Button>
                     ))}
                   </div>
-                  <Container className="mb-5">
-                    <Row>
-                      {filteredMovies.length === 0 ? (
-                        <Col>The list is empty!</Col>
-                      ) : (
-                        filteredMovies.map((movie) => (
-                          <Col
-                            key={movie._id}
-                            xs={12}
-                            sm={6}
-                            md={4}
-                            className="d-flex justify-content-center mb-4"
-                          >
-                            <MovieCard movie={movie} />
-                          </Col>
-                        ))
-                      )}
-                    </Row>
-                  </Container>
+                  <ControlledCarousel movies={filteredMovies} />
                 </div>
               )
             }
