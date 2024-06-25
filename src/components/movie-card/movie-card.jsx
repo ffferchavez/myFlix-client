@@ -15,13 +15,13 @@ export const MovieCard = ({ movie }) => {
           variant="top"
           src={movie.ImagePath}
           alt={movie.Title}
-          style={{ objectFit: "cover", height: "400px" }}
+          style={{ objectFit: "cover", height: "600px" }}
         />
-        <Card.Body className="d-flex flex-column justify-content-between">
+        <Card.Body className="d-flex flex-column text-center justify-content-between">
           <div>
             <Card.Title>{movie.Title}</Card.Title>
           </div>
-          <div className="text-center mt-3">
+          <div className="text-center">
             <Link
               to={`/movies/${movie._id}`}
               style={{ textDecoration: "none" }}
@@ -56,4 +56,4 @@ MovieCard.propTypes = {
   }).isRequired,
 };
 
-export default MovieCard
+export default MovieCard;

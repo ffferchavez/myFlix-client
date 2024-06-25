@@ -1,5 +1,5 @@
 $primary: FireBrick;
-$body-bg: Snow;
+$body-bg: snow;
 
 @import "~bootstrap/scss/bootstrap.scss";
 
@@ -37,7 +37,6 @@ body {
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.2);
-
 }
 
 .home-background {
@@ -114,8 +113,26 @@ body {
 
 .nav-link {
   font-size: 14px;
+  position: relative;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  transition: color 0.5s ease;
 }
 
-.nav-link:hover {
-  text-decoration: underline;
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: white;
+  transition: width 0.5s ease, right 0.5s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  right: 0;
 }

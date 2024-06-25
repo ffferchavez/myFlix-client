@@ -6,6 +6,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useNavigate, Link } from "react-router-dom";
 import NavbarLogo from "../../assets/img/navbar-logo.jpeg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function NavigationBar({ onLogout, onSearch }) {
   const navigate = useNavigate();
@@ -36,7 +38,12 @@ function NavigationBar({ onLogout, onSearch }) {
     const value = e.target.value; // Ensure e.target is defined before accessing value
     setSearchTerm(value);
     onSearch(value); // Pass search term to parent component
-  };  
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    onSearch(searchTerm); // Trigger search when the button is clicked
+  };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -51,7 +58,12 @@ function NavigationBar({ onLogout, onSearch }) {
       fixed="top"
       expand="lg"
       expanded={expanded}
-      style={{ backgroundColor: "rgba(178, 34, 34, 0.5)", width: "100%", paddingTop: "0", paddingBottom: "0" }}
+      style={{
+        backgroundColor: "rgba(178, 34, 34, 0.5)",
+        width: "100%",
+        paddingTop: "0",
+        paddingBottom: "0",
+      }}
     >
       <Container fluid>
         <Navbar.Brand as={Link} to="/" onClick={() => setExpanded(false)}>
@@ -67,31 +79,71 @@ function NavigationBar({ onLogout, onSearch }) {
           onClick={handleNavbarToggle}
         />
         <Navbar.Collapse id="navbarScroll">
-          <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "200px" }} navbarScroll>
-            <Nav.Link as={Link} to="/" style={{ color: "white" }} onClick={handleNavItemClick}>
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: "200px" }}
+            navbarScroll
+          >
+            <Nav.Link
+              as={Link}
+              to="/"
+              style={{ color: "white" }}
+              onClick={handleNavItemClick}
+            >
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/movies" style={{ color: "white" }} onClick={handleNavItemClick}>
+            <Nav.Link
+              as={Link}
+              to="/movies"
+              style={{ color: "white" }}
+              onClick={handleNavItemClick}
+            >
               Movies
             </Nav.Link>
-            <Nav.Link as={Link} to="/carousel" style={{ color: "white" }} onClick={handleNavItemClick}>
+            <Nav.Link
+              as={Link}
+              to="/carousel"
+              style={{ color: "white" }}
+              onClick={handleNavItemClick}
+            >
               Phases
             </Nav.Link>
-            <Nav.Link as={Link} to="/users/profile" style={{ color: "white" }} onClick={handleNavItemClick}>
+            <Nav.Link
+              as={Link}
+              to="/users/profile"
+              style={{ color: "white" }}
+              onClick={handleNavItemClick}
+            >
               Profile
             </Nav.Link>
-            <Nav.Link className="logout-link" onClick={handleLogout} style={{ color: "white" }}>
+            <Nav.Link
+              className="logout-link"
+              onClick={handleLogout}
+              style={{ color: "white" }}
+            >
               Log Out
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          <Form
+            className="d-flex m-1 ml-auto"
+            style={{ transform: "scale(0.8)", transformOrigin: "right center" }}
+            onSubmit={handleSearchSubmit}
+          >
             <Form.Control
               type="text"
               placeholder="Search your movie..."
               className="mr-2"
               value={searchTerm}
               onChange={handleSearchChange}
+              style={{ marginRight: "5px" }}
             />
+            <Button
+              variant="outline-light"
+              type="submit"
+              style={{ marginLeft: "5px" }}
+            >
+              <FontAwesomeIcon icon={faSearch} />
+            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>
