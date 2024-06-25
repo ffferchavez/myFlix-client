@@ -13273,16 +13273,43 @@ body {
   padding: 30px;
 }
 
-.phase-buttons {
-  margin-top: 20px;
+.carousel-c .carousel-control-prev, .carousel-c .carousel-control-next {
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.movie-card {
-  margin: 15px 0;
+.carousel-c .carousel-control-prev {
+  left: -40px;
 }
 
-.custom-card {
+.carousel-c .carousel-control-next {
+  right: -40px;
+}
+
+.carousel-c .carousel-control-prev-icon, .carousel-c .carousel-control-next-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.movie-card .custom-card {
   border: none !important;
+}
+
+.movie-card .custom-card .card-img-top {
+  object-fit: cover;
+  height: 600px;
+}
+
+.movie-card .custom-card .card-body {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.movie-card:hover {
+  transition: transform .25s ease-in-out;
+  transform: scale(1.01);
 }
 
 .nav-link {
@@ -13309,27 +13336,5 @@ body {
 .nav-link:hover:after {
   width: 100%;
   right: 0;
-}
-
-.carousel-c {
-  position: relative;
-}
-
-.carousel-c .carousel-control-prev, .carousel-c .carousel-control-next {
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.carousel-c .carousel-control-prev {
-  left: -40px;
-}
-
-.carousel-c .carousel-control-next {
-  right: -40px;
-}
-
-.carousel-c .carousel-control-prev-icon, .carousel-c .carousel-control-next-icon {
-  width: 80px;
-  height: 80px;
 }
 /*# sourceMappingURL=index.2212206d.css.map */

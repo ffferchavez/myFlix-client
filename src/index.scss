@@ -3,10 +3,6 @@ $body-bg: snow;
 
 @import "~bootstrap/scss/bootstrap.scss";
 
-/*.my-flix {
-  color: $color;
-}*/
-
 body {
   background-image: url("./assets/img/red-bg.svg");
   background-size: cover;
@@ -71,7 +67,7 @@ body {
   border-radius: 10px;
   padding: 20px;
   align-items: center;
-  min-height: 100vh; /* Ensure the container takes full viewport height */
+  min-height: 100vh;
 }
 
 .login-label {
@@ -97,18 +93,47 @@ body {
   padding: 30px;
   margin-top: 30px;
   height: 100%;
-}
 
-.phase-buttons {
-  margin-top: 20px;
+  .carousel-control-prev,
+  .carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .carousel-control-prev {
+    left: -40px;
+  }
+
+  .carousel-control-next {
+    right: -40px;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 .movie-card {
-  margin: 15px 0;
+  .custom-card {
+    border: none !important;
+    .card-img-top {
+      height: 600px;
+      object-fit: cover;
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
 
-.custom-card {
-  border: none !important;
+.movie-card:hover {
+  transform: scale(1.01);
+  transition: transform 0.25s ease-in-out;
 }
 
 .nav-link {
@@ -135,28 +160,4 @@ body {
 .nav-link:hover::after {
   width: 100%;
   right: 0;
-}
-
-.carousel-c {
-  position: relative;
-
-  .carousel-control-prev,
-  .carousel-control-next {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .carousel-control-prev {
-    left: -40px;
-  }
-
-  .carousel-control-next {
-    right: -40px;
-  }
-
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    width: 80px;
-    height: 80px;
-  }
 }
