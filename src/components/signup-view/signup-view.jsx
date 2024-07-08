@@ -37,21 +37,19 @@ export const SignupView = () => {
 
     if (!birthday.trim()) {
       errors.birthday = "Birthday is required";
-    } else if (!isValidDate(birthday)) {
-      errors.birthday = "Birthday is not valid (yyyy/mm/dd)";
     }
 
     return errors;
   };
 
-  const isValidDate = (dateString) => {
+  /*const isValidDate = (dateString) => {
     const regEx = /^\d{2}\/\d{2}\/\d{4}$/;
     if (!dateString.match(regEx)) return false; // Invalid format
     const d = new Date(dateString);
     const dNum = d.getTime();
     if (!dNum && dNum !== 0) return false; // NaN value, invalid date
     return d.toISOString().slice(0, 10) === dateString;
-  };
+  };*/
 
   const handleSubmit = (event) => {
     event.preventDefault();
