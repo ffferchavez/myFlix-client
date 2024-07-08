@@ -19,7 +19,6 @@ const MainView = () => {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [currentPhase, setCurrentPhase] = useState("1"); // Initialize currentPhase to "1"
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     if (!token) return;
@@ -53,7 +52,6 @@ const MainView = () => {
           },
         }));
 
-        // Set all movies initially
         setMovies(formattedMovies);
 
         // Filter movies based on initial phase (Phase 1)
@@ -61,7 +59,6 @@ const MainView = () => {
           (movie) => movie.Phase === currentPhase
         );
         setFilteredMovies(initialFilteredMovies);
-        setSearchResults(initialFilteredMovies); // Set search results initially to all movies
       })
       .catch((error) => {
         console.error("Error fetching movies:", error);
@@ -74,15 +71,16 @@ const MainView = () => {
     // Filter movies based on selected phase
     const filtered = movies.filter((movie) => movie.Phase === phase);
     setFilteredMovies(filtered);
-    setSearchResults(filtered); // Update search results when phase changes
   };
 
   const handleSearchChange = (searchTerm) => {
     setSearchTerm(searchTerm);
 
-    // Filter movies based on search term
-    const results = movies.filter((movie) =>
-      movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+    // Filter movies based on search term and current phase
+    const results = movies.filter(
+      (movie) =>
+        movie.Title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        movie.Phase === currentPhase
     );
     setFilteredMovies(results);
   };
@@ -98,13 +96,10 @@ const MainView = () => {
     localStorage.removeItem("token");
   };
 
-  // Sort movies by phases
-  const sortedMovies = [...movies].sort((a, b) => a.Phase - b.Phase);
-
   return (
     <BrowserRouter>
       {user && token && (
-        <NavigationBar onLogout={handleLogout} onSearch={handleSearchChange} /> // Pass onSearch prop
+        <NavigationBar onLogout={handleLogout} onSearch={handleSearchChange} />
       )}
       <Row className="justify-content-md-center" style={mainContentStyle}>
         <Routes>
@@ -194,32 +189,38 @@ const MainView = () => {
               ) : (
                 <Container className="mb-5">
                   <Row>
-                    {sortedMovies.length > 0 ? (
-                      sortedMovies.map((movie) => (
-                        <Col
-                          key={movie._id}
-                          xs={12}
-                          sm={6}
-                          md={4}
-                          className="d-flex justify-content-center mb-4"
-                        >
-                          <MovieCard movie={movie} />
-                        </Col>
-                      ))
-                    ) : filteredMovies.length === 0 ? (
-                      <Col>The list is empty!</Col>
+                    {searchTerm ? (
+                      filteredMovies.length > 0 ? (
+                        filteredMovies.map((movie) => (
+                          <Col
+                            key={movie._id}
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            className="d-flex justify-content-center mb-4"
+                          >
+                            <MovieCard movie={movie} />
+                          </Col>
+                        ))
+                      ) : (
+                        <Col>The list is empty!</Col>
+                      )
+                    ) : movies.length > 0 ? (
+                      [...movies]
+                        .sort((a, b) => a.Phase - b.Phase)
+                        .map((movie) => (
+                          <Col
+                            key={movie._id}
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            className="d-flex justify-content-center mb-4"
+                          >
+                            <MovieCard movie={movie} />
+                          </Col>
+                        ))
                     ) : (
-                      filteredMovies.map((movie) => (
-                        <Col
-                          key={movie._id}
-                          xs={12}
-                          sm={6}
-                          md={4}
-                          className="d-flex justify-content-center mb-4"
-                        >
-                          <MovieCard movie={movie} />
-                        </Col>
-                      ))
+                      <Col>The list is empty!</Col>
                     )}
                   </Row>
                 </Container>
